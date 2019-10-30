@@ -10,22 +10,22 @@ import java.util.LinkedList;
  * Sorter manager
  * @author frank
  */
-public class SorterLoader
+public class SorterInitializer
 {
     @Getter
-    private ChainSorter firstSorter;
+    private BaseSorter firstSorter;
 
-    public SorterLoader()
+    public SorterInitializer()
     {
         initSorters();
     }
 
     private void initSorters()
     {
-        LinkedList<ChainSorter> sorters = null;
+        LinkedList<BaseSorter> sorters = null;
         try
         {
-            sorters = ReflectUtils.getAllChildInstanceByClass(ChainSorter.class);
+            sorters = ReflectUtils.getAllChildInstanceByClass(BaseSorter.class);
         }
         catch (IllegalAccessException | InstantiationException e)
         {
@@ -38,12 +38,12 @@ public class SorterLoader
             return;
         }
 
-        Iterator<ChainSorter> iterator=sorters.iterator();
-        ChainSorter oldSorter = null;
+        Iterator<BaseSorter> iterator=sorters.iterator();
+        BaseSorter oldSorter = null;
         while(iterator.hasNext()){
             if(oldSorter != null)
             {
-                ChainSorter newGuy = iterator.next();
+                BaseSorter newGuy = iterator.next();
                 oldSorter.setNextSorter(newGuy);
                 oldSorter = newGuy;
             }

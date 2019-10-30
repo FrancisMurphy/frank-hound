@@ -1,7 +1,7 @@
 package com.hbfintech.hound.plugin.spring.mvc.interceptor;
 
 import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
-import com.hbfintech.hound.core.context.HoundCoreContext;
+import com.hbfintech.hound.core.support.HoundContext;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ public class MvcTraceInterceptor implements HandlerInterceptor
 
     public MvcTraceInterceptor()
     {
-        mvcUnpacker = HoundCoreContext
+        mvcUnpacker = HoundContext
                 .getContext().getComponent("mvc", Unpacker.class);
     }
 

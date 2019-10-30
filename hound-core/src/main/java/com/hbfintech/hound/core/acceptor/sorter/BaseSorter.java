@@ -1,7 +1,7 @@
 package com.hbfintech.hound.core.acceptor.sorter;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import com.hbfintech.hound.core.entity.HoundTraceContext;
+import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
 import lombok.Setter;
 
@@ -9,14 +9,14 @@ import lombok.Setter;
  * Chain of responsibility
  * @author frank
  */
-public abstract class ChainSorter implements Sorter
+public abstract class BaseSorter implements Sorter
 {
     @Setter
-    private ChainSorter nextSorter;
+    private BaseSorter nextSorter;
 
-    TransmittableThreadLocal<HoundTraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
+    TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
 
-    public ChainSorter()
+    public BaseSorter()
     {
     }
 
@@ -38,6 +38,6 @@ public abstract class ChainSorter implements Sorter
 
     }
 
-    protected abstract void sorting(TransmittableThreadLocal<HoundTraceContext> traceContextThreadLocal);
+    protected abstract void sorting(TransmittableThreadLocal<TraceContext> traceContextThreadLocal);
 
 }

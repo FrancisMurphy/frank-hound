@@ -1,10 +1,10 @@
 package com.hbfintech.hound.plugin.logback;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import com.hbfintech.hound.core.acceptor.sorter.ChainSorter;
+import com.hbfintech.hound.core.acceptor.sorter.BaseSorter;
 import com.hbfintech.hound.core.annotation.HoundComponent;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
-import com.hbfintech.hound.core.entity.HoundTraceContext;
+import com.hbfintech.hound.core.context.TraceContext;
 import org.slf4j.MDC;
 import org.springframework.util.StringUtils;
 
@@ -14,7 +14,7 @@ import java.util.UUID;
  * @author frank
  */
 @HoundComponent("logback")
-public class LogbackSorter extends ChainSorter
+public class LogbackSorter extends BaseSorter
 {
     public LogbackSorter()
     {
@@ -22,7 +22,7 @@ public class LogbackSorter extends ChainSorter
     }
 
     @Override
-    protected void sorting(TransmittableThreadLocal<HoundTraceContext> traceContextThreadLocal)
+    protected void sorting(TransmittableThreadLocal<TraceContext> traceContextThreadLocal)
     {
         if(null == traceContextThreadLocal.get() || StringUtils
                 .isEmpty(traceContextThreadLocal.get().getContext(
@@ -45,12 +45,12 @@ public class LogbackSorter extends ChainSorter
      * @return
      */
     private String initTraceId(
-            TransmittableThreadLocal<HoundTraceContext> traceContextThreadLocal)
+            TransmittableThreadLocal<TraceContext> traceContextThreadLocal)
     {
         UUID uuid = UUID.randomUUID();
         String newTraceId = uuid.toString().replace("-", "");
 
-        HoundTraceContext traceContext = new HoundTraceContext();
+        TraceContext traceContext = new TraceContext();
         traceContext.addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, newTraceId);
         traceContextThreadLocal.set(traceContext);
         return newTraceId;

@@ -1,7 +1,7 @@
 package com.hbfintech.hound.plugin.feign;
 
 
-import com.hbfintech.hound.core.entity.HoundTraceContext;
+import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
@@ -17,7 +17,7 @@ public class HoundFeignClientPacker implements RequestInterceptor
     public void apply(RequestTemplate requestTemplate)
     {
         //获取现场上下文中的traceId
-        HoundTraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT.get();
+        TraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT.get();
 
         if(null == traceContext)
         {

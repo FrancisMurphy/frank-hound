@@ -1,6 +1,6 @@
 package com.hbfintech.hound.plugin.spring.resttemplate;
 
-import com.hbfintech.hound.core.entity.HoundTraceContext;
+import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -20,7 +20,7 @@ public class HoundRestTempatePacker implements ClientHttpRequestInterceptor
             ClientHttpRequestExecution execution) throws IOException
     {
         //获取现场上下文中的traceId
-        HoundTraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT
+        TraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT
                 .get();
 
         if (null == traceContext)

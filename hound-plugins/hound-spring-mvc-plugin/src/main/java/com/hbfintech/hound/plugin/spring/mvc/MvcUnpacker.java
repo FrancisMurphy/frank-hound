@@ -4,7 +4,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.acceptor.unpacker.BasicUnpacker;
 import com.hbfintech.hound.core.annotation.HoundComponent;
 import com.hbfintech.hound.core.assistant.TraceContextAssistant;
-import com.hbfintech.hound.core.entity.HoundTraceContext;
+import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class MvcUnpacker extends BasicUnpacker
 
         try
         {
-            TransmittableThreadLocal<HoundTraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
+            TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
 
             //获取上下文参数
             Enumeration<String> headerNames = request.getHeaderNames();
@@ -45,7 +45,7 @@ public class MvcUnpacker extends BasicUnpacker
                         final String headerValue = request
                                 .getHeader(headerName);
                         //放入线程上下文
-                        HoundTraceContext traceContext = new HoundTraceContext();
+                        TraceContext traceContext = new TraceContext();
                         traceContext.addContext(headerName, headerValue);
                         traceContextThreadLocal.set(traceContext);
                     }

@@ -1,11 +1,11 @@
-package com.hbfintech.hound.core.entity;
+package com.hbfintech.hound.core.context;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class HoundTraceContext
+public class TraceContext
 {
     /**
      * The map that keep context param

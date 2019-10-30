@@ -1,6 +1,6 @@
 package com.hbfintech.hound.plugin.httpclient;
 
-import com.hbfintech.hound.core.entity.HoundTraceContext;
+import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
@@ -24,7 +24,7 @@ public class HoundHttpClientPacker implements HttpRequestInterceptor
         //interceptor http request by httpClient
 
         //获取现场上下文中的traceId
-        HoundTraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT
+        TraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT
                 .get();
 
         if (null == traceContext)
