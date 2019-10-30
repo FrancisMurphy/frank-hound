@@ -2,7 +2,7 @@ package com.hbfintech.hound.plugin.feign;
 
 
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
+import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 

@@ -1,7 +1,7 @@
 package com.hbfintech.hound.plugin.spring.resttemplate;
 
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
+import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;

@@ -1,7 +1,7 @@
 package com.hbfintech.hound.plugin.httpclient;
 
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.keeper.TraceContextThreadLocalKeeper;
+import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
