@@ -2,8 +2,8 @@ package com.hbfintech.hound.spi;
 
 
 import com.hbfintech.hound.plugin.feign.HoundFeignClientPacker;
-import com.hbfintech.hound.plugin.spring.mvc.configurer.HoundMvcConfigurer;
-import com.hbfintech.hound.plugin.spring.mvc.interceptor.MvcTraceInterceptor;
+import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcConfigurer;
+import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,16 +18,17 @@ public class HoundAutoConfiguration
      * MVC
      */
     @Bean
-    public MvcTraceInterceptor mvcTraceInterceptor()
+    public HoundWebMvcInterceptor mvcTraceInterceptor()
     {
-        return new MvcTraceInterceptor();
+        return new HoundWebMvcInterceptor();
     }
 
     @Bean
-    @ConditionalOnBean(value = {MvcTraceInterceptor.class})
-    public HoundMvcConfigurer mvcWebMvcConfigurer(MvcTraceInterceptor mvcTraceInterceptor)
+    @ConditionalOnBean(value = { HoundWebMvcInterceptor.class})
+    public HoundWebMvcConfigurer mvcWebMvcConfigurer(
+            HoundWebMvcInterceptor mvcTraceInterceptor)
     {
-        return new HoundMvcConfigurer(mvcTraceInterceptor);
+        return new HoundWebMvcConfigurer(mvcTraceInterceptor);
     }
 
     /**

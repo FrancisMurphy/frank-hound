@@ -1,6 +1,5 @@
-package com.hbfintech.hound.plugin.spring.mvc.configurer;
+package com.hbfintech.hound.plugin.spring.mvc;
 
-import com.hbfintech.hound.plugin.spring.mvc.interceptor.MvcTraceInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -8,16 +7,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * @author frank
  */
-public class HoundMvcConfigurer implements WebMvcConfigurer
+public class HoundWebMvcConfigurer implements WebMvcConfigurer
 {
-    private MvcTraceInterceptor mvcTraceInterceptor;
+    private HoundWebMvcInterceptor mvcTraceInterceptor;
 
-    public HoundMvcConfigurer()
+    public HoundWebMvcConfigurer()
     {
     }
 
-    public HoundMvcConfigurer(
-            MvcTraceInterceptor mvcTraceInterceptor)
+    public HoundWebMvcConfigurer(
+            HoundWebMvcInterceptor mvcTraceInterceptor)
     {
         this.mvcTraceInterceptor = mvcTraceInterceptor;
     }

@@ -14,7 +14,7 @@ import java.util.Enumeration;
  * @author frank
  */
 @HoundComponent("mvc")
-public class MvcUnpacker extends BasicUnpacker
+public class WebMvcUnpacker extends BasicUnpacker
 {
 
     @Override
