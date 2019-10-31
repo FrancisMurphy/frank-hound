@@ -5,7 +5,6 @@ import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.requester.packer.Packer;
 import com.hbfintech.hound.core.support.HoundComponent;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
-import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
 import java.util.Map;
@@ -41,9 +40,6 @@ public class FeignPacker implements Packer
             final String contextValue = contextEntry.getValue();
             requestTemplate.header(contextKey, contextValue);
         }
-
-
-
 
     }
 }

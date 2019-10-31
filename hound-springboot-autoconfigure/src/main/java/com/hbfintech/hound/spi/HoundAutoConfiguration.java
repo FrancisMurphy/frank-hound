@@ -1,12 +1,11 @@
 package com.hbfintech.hound.spi;
 
-
-import com.hbfintech.hound.plugin.feign.FeignPacker;
-import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcConfigurer;
-import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcInterceptor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import com.hbfintech.hound.plugin.feign.HoundFeignRequestInterceptor;
+import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 
 /**
  * @author frank
@@ -15,29 +14,26 @@ import org.springframework.context.annotation.Configuration;
 public class HoundAutoConfiguration
 {
     /**
-     * MVC
-     */
-    @Bean
-    public HoundWebMvcInterceptor mvcTraceInterceptor()
-    {
-        return new HoundWebMvcInterceptor();
-    }
-
-    @Bean
-    @ConditionalOnBean(value = { HoundWebMvcInterceptor.class})
-    public HoundWebMvcConfigurer mvcWebMvcConfigurer(
-            HoundWebMvcInterceptor mvcTraceInterceptor)
-    {
-        return new HoundWebMvcConfigurer(mvcTraceInterceptor);
-    }
-
-    /**
      * feign
      */
     @Bean
-    public FeignPacker feignTraceInterceptor()
+    public HoundFeignRequestInterceptor houndFeignRequestInterceptor()
     {
-        return new FeignPacker();
+        return new HoundFeignRequestInterceptor();
+    }
+
+    /**
+     * webMvc
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean houndWebMvcFilterFilterRegistrationBean()
+    {
+        FilterRegistrationBean<HoundWebMvcFilter> registrationBean = new FilterRegistrationBean<>(new HoundWebMvcFilter());
+        registrationBean.addUrlPatterns("/*");
+        registrationBean.setName("houndWebMvcFilter");
+        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return registrationBean;
     }
 
 }
