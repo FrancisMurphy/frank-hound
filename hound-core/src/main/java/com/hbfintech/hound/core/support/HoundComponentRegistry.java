@@ -9,11 +9,11 @@ import java.util.Set;
 /**
  * 二级映射容器
  */
-public class ComponentRegistry
+public class HoundComponentRegistry
 {
     private Map<Class, HoundComponent> componentsMapper = new HashMap<>();
 
-    public ComponentRegistry()
+    public HoundComponentRegistry()
     {
         initContainer();
     }
@@ -23,7 +23,7 @@ public class ComponentRegistry
         //扫描方法区下的类信息
         Reflections reflections = new Reflections("com");
         Set<Class<?>> componentClazzSet = reflections.getTypesAnnotatedWith(
-                com.hbfintech.hound.core.annotation.HoundComponent.class);
+                com.hbfintech.hound.core.support.HoundComponent.class);
 
         parseComponent(componentClazzSet);
 

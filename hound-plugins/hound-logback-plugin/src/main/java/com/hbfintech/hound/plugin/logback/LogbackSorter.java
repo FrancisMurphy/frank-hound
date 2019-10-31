@@ -2,7 +2,7 @@ package com.hbfintech.hound.plugin.logback;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.acceptor.sorter.BaseSorter;
-import com.hbfintech.hound.core.annotation.HoundComponent;
+import com.hbfintech.hound.core.support.HoundComponent;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.context.TraceContext;
 import org.slf4j.MDC;

@@ -11,13 +11,13 @@ public class HoundContext implements HoundComponentLoader, Sorter
 {
     private static HoundContext context = new HoundContext();
 
-    private ComponentRegistry componentContainer;
+    private HoundComponentRegistry componentContainer;
 
     private Sorter firstSorter;
 
     private HoundContext()
     {
-        componentContainer = new ComponentRegistry();
+        componentContainer = new HoundComponentRegistry();
         SorterInitializer sorterLoader= new SorterInitializer();
         firstSorter = sorterLoader.getFirstSorter();
     }
@@ -25,7 +25,7 @@ public class HoundContext implements HoundComponentLoader, Sorter
     @Override
     public <T> T getComponent(String componentName,Class<T> componentClazz)
     {
-        ComponentRegistry.HoundComponent<T> basicContainer = componentContainer.getCompontsContainer(componentClazz);
+        HoundComponentRegistry.HoundComponent<T> basicContainer = componentContainer.getCompontsContainer(componentClazz);
         if(basicContainer!=null)
         {
             return basicContainer.get(componentName);

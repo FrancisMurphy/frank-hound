@@ -1,7 +1,7 @@
 package com.hbfintech.hound.spi;
 
 
-import com.hbfintech.hound.plugin.feign.HoundFeignClientPacker;
+import com.hbfintech.hound.plugin.feign.FeignPacker;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcConfigurer;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -35,9 +35,9 @@ public class HoundAutoConfiguration
      * feign
      */
     @Bean
-    public HoundFeignClientPacker feignTraceInterceptor()
+    public FeignPacker feignTraceInterceptor()
     {
-        return new HoundFeignClientPacker();
+        return new FeignPacker();
     }
 
 }
