@@ -11,6 +11,8 @@
 
     <artifactId>hound-starter</artifactId>
 
+    <name>hbfintech-hound-starter</name>
+
     <dependencies>
 
 

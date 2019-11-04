@@ -1,7 +1,7 @@
 package com.hbfintech.hound.plugin.spring.mvc;
 
 import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
-import com.hbfintech.hound.core.support.HoundContext;
+import com.hbfintech.hound.core.support.HoundComponentContext;
 
 import javax.servlet.*;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class HoundWebMvcFilter implements Filter
 
     public HoundWebMvcFilter()
     {
-        mvcUnpacker = HoundContext
+        mvcUnpacker = HoundComponentContext
                 .getContext().getComponent("mvc", Unpacker.class);
     }
 

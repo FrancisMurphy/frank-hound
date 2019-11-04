@@ -11,6 +11,8 @@
 
     <artifactId>hound-agent</artifactId>
 
+    <name>hbfintech-hound-agent</name>
+
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>

@@ -11,6 +11,8 @@
 
     <artifactId>hound-autoconfigure</artifactId>
 
+    <name>hbfintech-hound-autoconfigure</name>
+
     <dependencies>
 
         <dependency>

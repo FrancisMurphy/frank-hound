@@ -11,6 +11,8 @@
 
     <artifactId>hound-spring-mvc-plugin</artifactId>
 
+    <name>hbfintech-hound-spring-mvc-plugin</name>
+
     <dependencies>
         <dependency>
             <groupId>com.hbfintech</groupId>

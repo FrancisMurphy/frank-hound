@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 二级映射容器
+ * hound组件注册器
  */
 public class HoundComponentRegistry
 {
@@ -29,8 +29,14 @@ public class HoundComponentRegistry
 
     }
 
+    /**
+     * 实例话组件
+     * @param componentClazzSet
+     */
     private void parseComponent(Set<Class<?>> componentClazzSet)
     {
+
+
 
 
 
@@ -40,14 +46,6 @@ public class HoundComponentRegistry
     {
         return componentsMapper.get(clazz);
     }
-
-    //    public static void main(String[] args)
-//    {
-//        HoundComponentContainer container = new HoundComponentContainer();
-//        Unpack mvcUnpack = container.getCompontsContainer(Unpack.class).get("mvc");
-//
-//
-//    }
 
     public class HoundComponent<T>
     {
