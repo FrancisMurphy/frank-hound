@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hound-spring-resttemplate</artifactId>
+    <artifactId>hound-spring-resttemplate-plugin</artifactId>
+
+    <name>hbfintech-hound-spring-resttemplate-plugin</name>
 
     <dependencies>
         <dependency>

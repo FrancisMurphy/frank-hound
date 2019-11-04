@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hound-starter</artifactId>
+    <artifactId>hound-springboot-starter</artifactId>
 
-    <name>hbfintech-hound-starter</name>
+    <name>hbfintech-hound-springboot-starter</name>
 
     <dependencies>
 

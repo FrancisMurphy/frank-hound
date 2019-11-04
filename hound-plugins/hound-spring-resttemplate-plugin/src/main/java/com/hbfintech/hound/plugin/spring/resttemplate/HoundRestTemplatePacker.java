@@ -6,10 +6,7 @@ import com.hbfintech.hound.core.support.HoundComponent;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
-import org.springframework.http.client.ClientHttpRequestInterceptor;
-import org.springframework.http.client.ClientHttpResponse;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -23,7 +20,7 @@ public class HoundRestTemplatePacker implements Packer
     @Override
     public void pack(Object... unpackParams)
     {
-        if(!(unpackParams.length == RESTTEMPLATE_PARAM_LENGTH
+        if(!(unpackParams.length == 2
                 &&unpackParams[0] instanceof HttpRequest
                 &&unpackParams[1] instanceof ClientHttpRequestExecution))
         {

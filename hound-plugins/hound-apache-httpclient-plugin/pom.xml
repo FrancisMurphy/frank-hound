@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hound-httpclient-plugin</artifactId>
+    <artifactId>hound-apache-httpclient-plugin</artifactId>
 
-    <name>hbfintech-hound-httpclient-plugin</name>
+    <name>hbfintech-hound-apache-httpclient-plugin</name>
 
     <dependencies>
         <dependency>
