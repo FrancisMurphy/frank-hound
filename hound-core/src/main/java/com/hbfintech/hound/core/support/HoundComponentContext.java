@@ -25,7 +25,7 @@ public class HoundComponentContext implements HoundContext
     @Override
     public <T> T getComponent(String componentName,Class<T> componentClazz)
     {
-        HoundComponentRegistry.HoundComponent<T> basicContainer = componentContainer.getCompontsContainer(componentClazz);
+        HoundComponentRegistry.HoundComponentGroup<T> basicContainer = componentContainer.getComponentsGroup(componentClazz);
         if(basicContainer!=null)
         {
             return basicContainer.get(componentName);

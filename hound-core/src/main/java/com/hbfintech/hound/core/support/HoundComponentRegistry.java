@@ -1,66 +1,113 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.acceptor.sorter.Sorter;
+import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
+import com.hbfintech.hound.core.requester.packer.Packer;
+import lombok.Getter;
+import lombok.NonNull;
 import org.reflections.Reflections;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 /**
  * hound组件注册器
  */
 public class HoundComponentRegistry
 {
-    private Map<Class, HoundComponent> componentsMapper = new HashMap<>();
+    private Map<Class, HoundComponentGroup> componentsMapper = new HashMap<>();
+
+    public static final Class[] VALID_COMPONENT_CLAZZES = { Sorter.class, Packer.class,
+            Unpacker.class };
 
     public HoundComponentRegistry()
     {
-        initContainer();
+        init();
     }
 
-    private void initContainer()
+    private void init()
     {
-        //扫描方法区下的类信息
+        //初始化componentsMapper
+        for(Class componentClazz: VALID_COMPONENT_CLAZZES)
+        {
+            componentsMapper.put(componentClazz,new HoundComponentGroup(componentClazz));
+        }
+
+        Map<Class<?>,HoundComponent> targetComponentClazzMap = getTargetHoundComponent();
+
+        //实例话并注册组件
+        parseComponent(targetComponentClazzMap.entrySet());
+    }
+
+    private Map<Class<?>, HoundComponent> getTargetHoundComponent()
+    {
         Reflections reflections = new Reflections("com");
-        Set<Class<?>> componentClazzSet = reflections.getTypesAnnotatedWith(
-                com.hbfintech.hound.core.support.HoundComponent.class);
-
-        parseComponent(componentClazzSet);
-
+        Set<Class<?>> targetComponentClazzSet = reflections.getTypesAnnotatedWith(
+                HoundComponent.class);
+        Map<Class<?>,HoundComponent> targetComponentClazzMap = new HashMap<>(targetComponentClazzSet.size());
+        for(Class targetComponentClazz:targetComponentClazzSet)
+        {
+            targetComponentClazzMap.put(targetComponentClazz,(HoundComponent)targetComponentClazz.getAnnotation(HoundComponent.class));
+        }
+        return targetComponentClazzMap;
     }
 
     /**
      * 实例话组件
-     * @param componentClazzSet
+     * @param targetComponentClazzEntrySet
      */
-    private void parseComponent(Set<Class<?>> componentClazzSet)
+    private void parseComponent(Set<Map.Entry<Class<?>, HoundComponent>> targetComponentClazzEntrySet)
     {
 
+        for(Map.Entry<Class<?>, HoundComponent> targetComponentEntry:targetComponentClazzEntrySet)
+        {
+            String targetComponentName = targetComponentEntry.getValue().value();
+            Class<?> targetComponentClazz = targetComponentEntry.getKey();
 
-
-
-
+            for(Class validComponentClazz : VALID_COMPONENT_CLAZZES)
+            {
+                if(validComponentClazz.isAssignableFrom(targetComponentClazz))
+                {
+                    try
+                    {
+                        componentsMapper.get(validComponentClazz).add(targetComponentName,targetComponentClazz.newInstance());
+                    }
+                    catch (InstantiationException | IllegalAccessException e)
+                    {
+                        //do nothing
+                    }
+                }
+            }
+        }
     }
 
-    public <T> HoundComponent<T> getCompontsContainer(Class<T> clazz)
+    public <T> HoundComponentGroup<T> getComponentsGroup(@NonNull Class<T> clazz)
     {
         return componentsMapper.get(clazz);
     }
 
-    public class HoundComponent<T>
+    /**
+     * The group of component
+     * @param <T>
+     */
+    public class HoundComponentGroup<T>
     {
+        @Getter
+        private Class<T> componentClazz;
+
         private Map<String,T> componentInstanceMapper = new HashMap<>();
 
-        public HoundComponent()
+        public HoundComponentGroup(@NonNull Class<T> componentClazz)
         {
+            this.componentClazz = componentClazz;
         }
 
-        public void add(String componentName, T componentInstance)
+        public void add(@NonNull String componentName, @NonNull T componentInstance)
         {
             componentInstanceMapper.put(componentName,componentInstance);
         }
 
-        public T get(String componentName)
+        public T get(@NonNull String componentName)
         {
             return componentInstanceMapper.get(componentName);
         }
