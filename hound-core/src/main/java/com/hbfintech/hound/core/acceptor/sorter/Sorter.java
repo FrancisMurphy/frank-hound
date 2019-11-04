@@ -1,7 +1,7 @@
 package com.hbfintech.hound.core.acceptor.sorter;
 
 /**
- * Action to sort
+ * 分拣员
  */
 public interface Sorter
 {

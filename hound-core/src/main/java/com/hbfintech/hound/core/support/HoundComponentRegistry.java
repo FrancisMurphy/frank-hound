@@ -25,6 +25,7 @@ public class HoundComponentRegistry
         init();
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private void init()
     {
         //初始化componentsMapper
@@ -56,7 +57,8 @@ public class HoundComponentRegistry
      * 实例话组件
      * @param targetComponentClazzEntrySet
      */
-    private void parseComponent(Set<Map.Entry<Class<?>, HoundComponent>> targetComponentClazzEntrySet)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private void parseComponent(@NonNull Set<Map.Entry<Class<?>, HoundComponent>> targetComponentClazzEntrySet)
     {
 
         for(Map.Entry<Class<?>, HoundComponent> targetComponentEntry:targetComponentClazzEntrySet)
@@ -81,6 +83,7 @@ public class HoundComponentRegistry
         }
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public <T> HoundComponentGroup<T> getComponentsGroup(@NonNull Class<T> clazz)
     {
         return componentsMapper.get(clazz);

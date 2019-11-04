@@ -2,6 +2,7 @@ package com.hbfintech.hound.core.support;
 
 import com.hbfintech.hound.core.acceptor.sorter.Sorter;
 import com.hbfintech.hound.core.acceptor.sorter.SorterInitializer;
+import lombok.NonNull;
 
 /**
  * 初始化并持有容器等重要实例的上下文，作用类似于ApplicationContext
@@ -23,7 +24,7 @@ public class HoundComponentContext implements HoundContext
     }
 
     @Override
-    public <T> T getComponent(String componentName,Class<T> componentClazz)
+    public <T> T getComponent(@NonNull String componentName,@NonNull Class<T> componentClazz)
     {
         HoundComponentRegistry.HoundComponentGroup<T> basicContainer = componentContainer.getComponentsGroup(componentClazz);
         if(basicContainer!=null)
@@ -38,7 +39,6 @@ public class HoundComponentContext implements HoundContext
         return context;
     }
 
-    @Override
     public void sort()
     {
         //TODO： 待优化，准备使用单线程事件驱动模型，正在斟酌如何实现

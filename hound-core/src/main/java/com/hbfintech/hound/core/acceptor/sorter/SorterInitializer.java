@@ -1,6 +1,7 @@
 package com.hbfintech.hound.core.acceptor.sorter;
 
-import com.hbfintech.hound.core.util.ReflectUtils;
+import com.hbfintech.hound.core.support.Chain;
+import com.hbfintech.hound.core.support.HoundComponentFactory;
 import lombok.Getter;
 
 import java.util.Iterator;
@@ -13,46 +14,47 @@ import java.util.LinkedList;
 public class SorterInitializer
 {
     @Getter
-    private BaseSorter firstSorter;
+    private Sorter firstSorter;
 
     public SorterInitializer()
     {
         initSorters();
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private void initSorters()
     {
-        LinkedList<BaseSorter> sorters = null;
+        LinkedList<Sorter> sorters = null;
         try
         {
-            sorters = ReflectUtils.getAllChildInstanceByClass(BaseSorter.class);
+            sorters = HoundComponentFactory.getAllChildInstanceByClass(Sorter.class);
         }
         catch (IllegalAccessException | InstantiationException e)
         {
+            //do nothing
             return;
-            //TODO:专用异常体系
         }
 
         if(null == sorters)
         {
+            //do nothing
             return;
         }
 
-        Iterator<BaseSorter> iterator=sorters.iterator();
-        BaseSorter oldSorter = null;
+        Iterator<Sorter> iterator=sorters.iterator();
+        firstSorter = sorters.getFirst();
+        Chain<Sorter> oldMan = null;
         while(iterator.hasNext()){
-            if(oldSorter != null)
+            if(oldMan != null)
             {
-                BaseSorter newGuy = iterator.next();
-                oldSorter.setNextSorter(newGuy);
-                oldSorter = newGuy;
+                Chain<Sorter> newGuy = (Chain<Sorter>) iterator.next();
+                oldMan.setNext(iterator.next());
+                oldMan = newGuy;
             }
             else
             {
-                oldSorter = iterator.next();
+                oldMan = (Chain<Sorter>) iterator.next();
             }
         }
-
-        firstSorter = sorters.getFirst();
     }
 }

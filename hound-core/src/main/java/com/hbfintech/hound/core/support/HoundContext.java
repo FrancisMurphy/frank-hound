@@ -1,8 +1,8 @@
 package com.hbfintech.hound.core.support;
 
-import com.hbfintech.hound.core.acceptor.sorter.Sorter;
+import lombok.NonNull;
 
-public interface HoundContext extends Sorter
+public interface HoundContext
 {
-    <T> T getComponent(String componentName, Class<T> componentClazz);
+    <T> T getComponent(@NonNull String componentName, @NonNull Class<T> componentClazz);
 }

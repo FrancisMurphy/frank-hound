@@ -1,14 +1,15 @@
-package com.hbfintech.hound.core.util;
+package com.hbfintech.hound.core.support;
 
+import lombok.NonNull;
 import org.reflections.Reflections;
 
 import java.util.LinkedList;
 import java.util.Set;
 
-public class ReflectUtils
+public class HoundComponentFactory
 {
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> LinkedList<T> getAllChildInstanceByClass(Class<T> clazz)
+    public static <T> LinkedList<T> getAllChildInstanceByClass(@NonNull Class<T> clazz)
             throws IllegalAccessException, InstantiationException
     {
         Reflections reflections = new Reflections("com");

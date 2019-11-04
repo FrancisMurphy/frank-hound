@@ -1,6 +1,7 @@
 package com.hbfintech.hound.core.support;
 
 import com.hbfintech.hound.core.constant.TraceContextConstants;
+import lombok.NonNull;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
@@ -32,7 +33,7 @@ public class TraceContextAssistant
     }
     }
 
-    public static boolean isTraceKeyContain(String key)
+    public static boolean isTraceKeyContain(@NonNull String key)
     {
         return traceContextKeys.contains(key);
     }
