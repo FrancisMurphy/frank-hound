@@ -18,10 +18,10 @@ public class TraceContextAssistant
 
         try
         {
-            for(Field traceContextField : traceContextFields)
+            for (Field traceContextField : traceContextFields)
             {
-                String traceContextKey = (String)traceContextField.get(null);
-                if(!StringUtils.isEmpty(traceContextKey))
+                String traceContextKey = (String) traceContextField.get(null);
+                if (!StringUtils.isEmpty(traceContextKey))
                 {
                     traceContextKeys.add(traceContextKey);
                 }
@@ -30,7 +30,7 @@ public class TraceContextAssistant
         catch (IllegalAccessException e)
         {
             e.printStackTrace();
-    }
+        }
     }
 
     public static boolean isTraceKeyContain(@NonNull String key)

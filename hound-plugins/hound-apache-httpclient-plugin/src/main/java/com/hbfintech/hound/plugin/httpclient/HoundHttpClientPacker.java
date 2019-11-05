@@ -39,6 +39,5 @@ public class HoundHttpClientPacker implements HttpRequestInterceptor
             final String contextValue = contextEntry.getValue();
             request.addHeader(contextKey,contextValue);
         }
-
     }
 }
