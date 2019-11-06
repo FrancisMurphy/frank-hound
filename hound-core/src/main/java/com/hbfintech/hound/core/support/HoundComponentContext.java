@@ -39,6 +39,7 @@ public class HoundComponentContext implements HoundContext
         return context;
     }
 
+    @Override
     public void sort()
     {
         //TODO： 待优化，准备使用单线程事件驱动模型，正在斟酌如何实现

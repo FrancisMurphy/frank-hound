@@ -28,15 +28,10 @@ public class LogbackSorter extends BaseSorter
                 .isEmpty(traceContextThreadLocal.get().getContext(
                         TraceContextConstants.TRACE_CONTEXT_HEAD)))
         {
-            String newTraceId = initTraceId(traceContextThreadLocal);
-
-            MDC.put(TraceContextConstants.TRACE_CONTEXT_HEAD, newTraceId);
+            initTraceId(traceContextThreadLocal);
         }
-        else
-        {
-            MDC.put(TraceContextConstants.TRACE_CONTEXT_HEAD, traceContextThreadLocal.get().getContext(
-                    TraceContextConstants.TRACE_CONTEXT_HEAD));
-        }
+        MDC.put(TraceContextConstants.TRACE_CONTEXT_HEAD, traceContextThreadLocal.get().getContext(
+                TraceContextConstants.TRACE_CONTEXT_HEAD));
     }
 
     /**

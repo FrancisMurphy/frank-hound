@@ -16,11 +16,9 @@ import java.util.Enumeration;
 @HoundComponent("mvc")
 public class WebMvcUnpacker extends BasicUnpacker
 {
-
     @Override
     protected void unpacking(Object... unpackParams)
     {
-
         if(!(1==unpackParams.length &&
                 unpackParams[0] instanceof HttpServletRequest))
         {

@@ -1,19 +1,18 @@
 package com.hbfintech.hound.plugin.spring.mvc;
 
 import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
-import com.hbfintech.hound.core.support.HoundComponentContext;
+import com.hbfintech.hound.core.support.HoundAutowired;
 
 import javax.servlet.*;
 import java.io.IOException;
 
 public class HoundWebMvcFilter implements Filter
 {
+    @HoundAutowired("mvc")
     private Unpacker mvcUnpacker;
 
     public HoundWebMvcFilter()
     {
-        mvcUnpacker = HoundComponentContext
-                .getContext().getComponent("mvc", Unpacker.class);
     }
 
     @Override
