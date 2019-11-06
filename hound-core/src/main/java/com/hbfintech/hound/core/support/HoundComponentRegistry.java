@@ -8,17 +8,17 @@ import lombok.NonNull;
 import org.reflections.Reflections;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 /**
  * hound组件注册器
  */
 public class HoundComponentRegistry
 {
+    /**
+     * hound组件mapper
+     * {@link com.hbfintech.hound.core.support.HoundComponent}
+     */
     private Map<Class, HoundComponentGroup> componentsMapper = new HashMap<>();
-
-    public static final Class[] VALID_COMPONENT_CLAZZES = { Sorter.class, Packer.class,
-            Unpacker.class };
 
     public HoundComponentRegistry()
     {
@@ -28,21 +28,37 @@ public class HoundComponentRegistry
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private void init()
     {
+        initComponent();
+    }
+
+    private void initComponent()
+    {
         //初始化componentsMapper
-        for(Class componentClazz: VALID_COMPONENT_CLAZZES)
+        for(Class componentClazz: HoundClazzLibrary.VALID_HOUND_COMPONENT_CLAZZES)
         {
             componentsMapper.put(componentClazz,new HoundComponentGroup(componentClazz));
         }
 
-        Map<Class<?>,HoundComponent> targetComponentClazzMap = getTargetHoundComponent();
+        Map<Class<?>, HoundComponent> targetComponentClazzMap = getTargetHoundComponent();
 
         //实例话并注册组件
-        parseComponent(targetComponentClazzMap.entrySet());
+        parseComponentGroup(targetComponentClazzMap.entrySet());
     }
 
     private Map<Class<?>, HoundComponent> getTargetHoundComponent()
     {
-        Reflections reflections = new Reflections("com");
+        Reflections reflections = new Reflections("com.hbfintech.hound");
+        Map<Class<?>, HoundComponent> targetComponentClazzMap = scanSpecifyPkgComponent(
+                reflections);
+
+        //TODO:后续支持通过配置，扫描其他包名下的hound拓展插件
+
+        return targetComponentClazzMap;
+    }
+
+    private Map<Class<?>, HoundComponent> scanSpecifyPkgComponent(
+            @NonNull Reflections reflections)
+    {
         Set<Class<?>> targetComponentClazzSet = reflections.getTypesAnnotatedWith(
                 HoundComponent.class);
         Map<Class<?>,HoundComponent> targetComponentClazzMap = new HashMap<>(targetComponentClazzSet.size());
@@ -58,7 +74,7 @@ public class HoundComponentRegistry
      * @param targetComponentClazzEntrySet
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void parseComponent(@NonNull Set<Map.Entry<Class<?>, HoundComponent>> targetComponentClazzEntrySet)
+    private void parseComponentGroup(@NonNull Set<Map.Entry<Class<?>, HoundComponent>> targetComponentClazzEntrySet)
     {
 
         for(Map.Entry<Class<?>, HoundComponent> targetComponentEntry:targetComponentClazzEntrySet)
@@ -66,7 +82,7 @@ public class HoundComponentRegistry
             String targetComponentName = targetComponentEntry.getValue().value();
             Class<?> targetComponentClazz = targetComponentEntry.getKey();
 
-            for(Class validComponentClazz : VALID_COMPONENT_CLAZZES)
+            for(Class validComponentClazz : HoundClazzLibrary.VALID_HOUND_COMPONENT_CLAZZES)
             {
                 if(validComponentClazz.isAssignableFrom(targetComponentClazz))
                 {

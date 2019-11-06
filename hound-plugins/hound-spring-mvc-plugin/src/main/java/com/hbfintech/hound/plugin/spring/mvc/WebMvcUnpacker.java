@@ -13,7 +13,7 @@ import java.util.Enumeration;
 /**
  * @author frank
  */
-@HoundComponent("mvc")
+@HoundComponent(HoundWebMvcConstants.HOUND_WEB_MVC_NAME)
 public class WebMvcUnpacker extends BasicUnpacker
 {
     @Override

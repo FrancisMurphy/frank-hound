@@ -1,7 +1,7 @@
 package com.hbfintech.hound.core.acceptor.sorter;
 
 import com.hbfintech.hound.core.support.Chain;
-import com.hbfintech.hound.core.support.HoundComponentFactory;
+import com.hbfintech.hound.core.support.HoundInstanceFactory;
 import lombok.Getter;
 
 import java.util.Iterator;
@@ -27,7 +27,7 @@ public class SorterInitializer
         LinkedList<Sorter> sorters = null;
         try
         {
-            sorters = HoundComponentFactory.getAllChildInstanceByClass(Sorter.class);
+            sorters = HoundInstanceFactory.getAllChildInstanceByClass(Sorter.class);
         }
         catch (IllegalAccessException | InstantiationException e)
         {
