@@ -18,10 +18,9 @@ public class HoundBridgeRegistry
 
     public HoundBridgeRegistry()
     {
-        init();
     }
 
-    private void init()
+    public void init()
     {
         initBriage();
     }
@@ -59,5 +58,10 @@ public class HoundBridgeRegistry
     public Iterator<Map.Entry<String, Object>> getBridges()
     {
         return bridgeMapper.entrySet().iterator();
+    }
+
+    public Object getBridge(@NonNull String bridgeName)
+    {
+        return bridgeMapper.get(bridgeName);
     }
 }

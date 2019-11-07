@@ -18,11 +18,10 @@ public class SorterInitializer
 
     public SorterInitializer()
     {
-        initSorters();
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void initSorters()
+    public void init()
     {
         LinkedList<Sorter> sorters = null;
         try

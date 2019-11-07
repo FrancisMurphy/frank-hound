@@ -15,7 +15,58 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-springboot-autoconfigure</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-spring-mvc-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-apache-httpclient-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-feign-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-logback-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hbfintech</groupId>
+            <artifactId>hound-spring-resttemplate-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
 
     </dependencies>
 

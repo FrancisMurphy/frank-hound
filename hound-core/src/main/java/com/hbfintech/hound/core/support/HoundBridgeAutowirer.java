@@ -18,10 +18,9 @@ public class HoundBridgeAutowirer
             @NonNull HoundBridgeRegistry houndBridgeRegistry)
     {
         this.houndBridgeRegistry = houndBridgeRegistry;
-        init();
     }
 
-    private void init()
+    public void init()
     {
         //遍历bridge
         if (houndBridgeRegistry == null)
@@ -59,7 +58,7 @@ public class HoundBridgeAutowirer
                     if (componentBaseClazz != null)
                     {
                         //Get and inject component instances
-                        Object componentInstance = HoundComponentContext.getContext()
+                        Object componentInstance = HoundShepherd.getContext()
                                 .getComponent(bridgeName, componentBaseClazz);
 
                         try

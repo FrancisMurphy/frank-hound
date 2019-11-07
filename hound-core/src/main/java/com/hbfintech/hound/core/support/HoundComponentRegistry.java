@@ -1,8 +1,5 @@
 package com.hbfintech.hound.core.support;
 
-import com.hbfintech.hound.core.acceptor.sorter.Sorter;
-import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
-import com.hbfintech.hound.core.requester.packer.Packer;
 import lombok.Getter;
 import lombok.NonNull;
 import org.reflections.Reflections;
@@ -22,11 +19,10 @@ public class HoundComponentRegistry
 
     public HoundComponentRegistry()
     {
-        init();
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void init()
+    public void init()
     {
         initComponent();
     }
@@ -47,9 +43,8 @@ public class HoundComponentRegistry
 
     private Map<Class<?>, HoundComponent> getTargetHoundComponent()
     {
-        Reflections reflections = new Reflections("com.hbfintech.hound");
         Map<Class<?>, HoundComponent> targetComponentClazzMap = scanSpecifyPkgComponent(
-                reflections);
+                "com.hbfintech.hound");
 
         //TODO:后续支持通过配置，扫描其他包名下的hound拓展插件
 
@@ -57,8 +52,9 @@ public class HoundComponentRegistry
     }
 
     private Map<Class<?>, HoundComponent> scanSpecifyPkgComponent(
-            @NonNull Reflections reflections)
+            @NonNull String scanPkg)
     {
+        Reflections reflections = new Reflections(scanPkg);
         Set<Class<?>> targetComponentClazzSet = reflections.getTypesAnnotatedWith(
                 HoundComponent.class);
         Map<Class<?>,HoundComponent> targetComponentClazzMap = new HashMap<>(targetComponentClazzSet.size());

@@ -118,6 +118,20 @@
             <artifactId>javassist</artifactId>
             <version>3.24.1-GA</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-apache-tools-ant-module</artifactId>
+            <version>RELEASE112</version>
+        </dependency>
+
     </dependencies>
     </dependencyManagement>
 

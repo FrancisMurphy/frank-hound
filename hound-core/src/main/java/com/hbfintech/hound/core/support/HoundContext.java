@@ -6,5 +6,7 @@ public interface HoundContext
 {
     <T> T getComponent(@NonNull String componentName, @NonNull Class<T> componentClazz);
 
+    Object getBridge(@NonNull String bridgeName);
+
     void sort();
 }
