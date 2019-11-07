@@ -1,6 +1,8 @@
 package com.hbfintech.hound.plugin.httpclient;
 
 import com.hbfintech.hound.core.context.TraceContext;
+import com.hbfintech.hound.core.requester.packer.Packer;
+import com.hbfintech.hound.core.support.HoundComponent;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
@@ -10,20 +12,21 @@ import org.apache.http.protocol.HttpContext;
 import java.io.IOException;
 import java.util.Map;
 
-public class HoundHttpClientPacker implements HttpRequestInterceptor
+@HoundComponent("httpClient")
+public class HoundHttpClientPacker implements Packer
 {
-
-    public HoundHttpClientPacker()
-    {
-    }
-
     @Override
-    public void process(HttpRequest request, HttpContext context)
-            throws HttpException, IOException
+    public void pack(Object... unpackParams)
     {
-        //interceptor http request by httpClient
+        if(!(unpackParams.length==2
+            &&unpackParams[0] instanceof HttpRequest
+            &&unpackParams[1] instanceof HttpContext))
+        {
+            return;
+        }
 
-        //获取现场上下文中的traceId
+        HttpRequest request = (HttpRequest) unpackParams[0];
+
         TraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT
                 .get();
 
