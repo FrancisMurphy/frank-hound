@@ -26,7 +26,7 @@ public class HoundRestTemplateInterceptor implements
     public ClientHttpResponse intercept(HttpRequest request, byte[] body,
             ClientHttpRequestExecution execution) throws IOException
     {
-        packer.pack(request,execution);
+        packer.pack((traceKey,traceValue)->request.getHeaders().add(traceKey,traceValue));
         return execution.execute(request, body);
     }
 }

@@ -20,6 +20,6 @@ public class HoundFeignRequestInterceptor implements RequestInterceptor
     @Override
     public void apply(RequestTemplate requestTemplate)
     {
-        packer.pack(requestTemplate);
+        packer.pack(requestTemplate::header);
     }
 }

@@ -21,6 +21,6 @@ public class HoundHttpClientInterceptor implements HttpRequestInterceptor
     public void process(HttpRequest request, HttpContext context)
             throws HttpException, IOException
     {
-        httpClientPacker.pack(request,context);
+        httpClientPacker.pack(request::addHeader);
     }
 }
