@@ -1,7 +1,9 @@
 package com.hbfintech.hound.core.support;
 
+import ch.qos.logback.classic.LoggerContext;
 import com.hbfintech.hound.core.acceptor.sorter.SorterInitializer;
 import lombok.NonNull;
+import org.slf4j.LoggerFactory;
 
 /**
  * 初始化并持有容器等重要实例的上下文，作用类似于ApplicationContext
@@ -9,6 +11,8 @@ import lombok.NonNull;
  */
 public class HoundShepherd implements HoundContext
 {
+    private LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+
     private static HoundContext shepherd;
 
     private HoundComponentRegistry componentRegistry;

@@ -15,5 +15,7 @@ public class HoundShepherdTest
 
         Object mvcFilter = houndContext.getBridge("mvc");
         mvcFilter.toString();
+
+        houndContext.sort();
     }
 }

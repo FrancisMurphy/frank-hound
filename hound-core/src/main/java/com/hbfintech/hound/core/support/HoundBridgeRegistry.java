@@ -32,12 +32,14 @@ public class HoundBridgeRegistry
 
     private Map<String, Object> getTargetHoundBridge()
     {
-        return scanSpecifyPkgBridge(new Reflections("com.hbfintech.hound"));
+        return scanSpecifyPkgBridge("com.hbfintech.hound");
     }
 
     private Map<String, Object> scanSpecifyPkgBridge(
-            @NonNull Reflections reflections)
+            @NonNull String pkgPrefix)
     {
+        Reflections reflections = new Reflections(pkgPrefix);
+
         Set<Class<?>> targetBridgeClazzSet = reflections.getTypesAnnotatedWith(
                 HoundBridge.class);
         Map<String, Object> targetBridgeClazzMap = new HashMap<>(targetBridgeClazzSet.size());
@@ -45,6 +47,7 @@ public class HoundBridgeRegistry
         {
             try
             {
+                //TODO:将实例化移入Instance Factory
                 targetBridgeClazzMap.put(((HoundBridge)targetComponentClazz.getAnnotation(HoundBridge.class)).value(),targetComponentClazz.newInstance());
             }
             catch (InstantiationException | IllegalAccessException e)

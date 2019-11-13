@@ -54,7 +54,17 @@ public class HoundComponentRegistry
     private Map<Class<?>, HoundComponent> scanSpecifyPkgComponent(
             @NonNull String scanPkg)
     {
-        Reflections reflections = new Reflections(scanPkg);
+        Reflections reflections;
+
+        try
+        {
+            reflections = new Reflections(scanPkg);
+        }
+        catch (Exception e)
+        {
+            return new HashMap<>(0);
+        }
+
         Set<Class<?>> targetComponentClazzSet = reflections.getTypesAnnotatedWith(
                 HoundComponent.class);
         Map<Class<?>,HoundComponent> targetComponentClazzMap = new HashMap<>(targetComponentClazzSet.size());

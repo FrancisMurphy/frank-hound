@@ -1,5 +1,7 @@
 package com.hbfintech.hound.spi;
 
+import com.hbfintech.hound.core.support.HoundContext;
+import com.hbfintech.hound.core.support.HoundShepherd;
 import com.hbfintech.hound.plugin.feign.HoundFeignRequestInterceptor;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -13,13 +15,15 @@ import org.springframework.core.Ordered;
 @Configuration
 public class HoundAutoConfiguration
 {
+    private HoundContext houndContext = HoundShepherd.getContext();
+
     /**
      * feign
      */
     @Bean
     public HoundFeignRequestInterceptor houndFeignRequestInterceptor()
     {
-        return new HoundFeignRequestInterceptor();
+        return (HoundFeignRequestInterceptor) houndContext.getBridge("feign");
     }
 
     /**
@@ -29,7 +33,8 @@ public class HoundAutoConfiguration
     @Bean
     public FilterRegistrationBean houndWebMvcFilterFilterRegistrationBean()
     {
-        FilterRegistrationBean<HoundWebMvcFilter> registrationBean = new FilterRegistrationBean<>(new HoundWebMvcFilter());
+        HoundWebMvcFilter houndFilter = (HoundWebMvcFilter) houndContext.getBridge("mvc");
+        FilterRegistrationBean<HoundWebMvcFilter> registrationBean = new FilterRegistrationBean<>(houndFilter);
         registrationBean.addUrlPatterns("/*");
         registrationBean.setName("houndWebMvcFilter");
         registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);

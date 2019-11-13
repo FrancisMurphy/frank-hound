@@ -5,6 +5,5 @@ public interface TraceContextConstants
     /**
      * The id that trace business link
      */
-    String TRACE_CONTEXT_HEAD = "trace_id";
-
+    String TRACE_CONTEXT_HEAD = "h_trace_id";
 }

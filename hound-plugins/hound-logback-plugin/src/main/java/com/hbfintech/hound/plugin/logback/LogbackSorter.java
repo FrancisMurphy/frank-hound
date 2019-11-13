@@ -1,14 +1,24 @@
 package com.hbfintech.hound.plugin.logback;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.Appender;
+import ch.qos.logback.core.OutputStreamAppender;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.acceptor.sorter.BaseSorter;
-import com.hbfintech.hound.core.support.HoundComponent;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.context.TraceContext;
+import com.hbfintech.hound.core.support.HoundComponent;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.util.StringUtils;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author frank
@@ -19,6 +29,7 @@ public class LogbackSorter extends BaseSorter
     public LogbackSorter()
     {
         super();
+
     }
 
     @Override
@@ -36,7 +47,7 @@ public class LogbackSorter extends BaseSorter
 
     /**
      * Init traceId that can not find traceId in trace context...
-     * @param traceContextThreadLocal
+     * @param traceContextThreadLocal threadlocal
      * @return
      */
     private String initTraceId(

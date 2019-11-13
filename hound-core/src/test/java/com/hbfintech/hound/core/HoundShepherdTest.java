@@ -7,7 +7,6 @@ import org.junit.Test;
 
 public class HoundShepherdTest
 {
-    @Test
     public void houndShepherdInitTest()
     {
         HoundContext houndContext = HoundShepherd.getContext();

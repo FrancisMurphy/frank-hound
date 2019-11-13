@@ -13,7 +13,7 @@
 
     <name>hbfintech-hound-core</name>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
