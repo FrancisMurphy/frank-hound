@@ -3,7 +3,7 @@ package com.hbfintech.hound.core.support;
 /**
  * 所有交由hound容器管理的都为Hound bean
  */
-public interface HoundBeanProcessor
+public interface HoundBeanPostProcessor
 {
     /**
      * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
@@ -13,15 +13,12 @@ public interface HoundBeanProcessor
      * @param beanName the name of the bean
      * @return the bean instance to use, either the original or a wrapped one;
      * if {@code null}, no subsequent BeanPostProcessors will be invoked
-     * @throws org.springframework.beans.BeansException in case of errors
-     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
      */
     Object postProcessBeforeInitialization(Object bean, String beanName);
 
     /**
      * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
-     * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
-     * or a custom init-method). The bean will already be populated with property values.
+     * initialization callbacks. The bean will already be populated with property values.
      * The returned bean instance may be a wrapper around the original.
      * <p>In case of a FactoryBean, this callback will be invoked for both the FactoryBean
      * instance and the objects created by the FactoryBean (as of Spring 2.0). The
@@ -34,9 +31,6 @@ public interface HoundBeanProcessor
      * @param beanName the name of the bean
      * @return the bean instance to use, either the original or a wrapped one;
      * if {@code null}, no subsequent BeanPostProcessors will be invoked
-     * @throws org.springframework.beans.BeansException in case of errors
-     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
-     * @see org.springframework.beans.factory.FactoryBean
      */
     Object postProcessAfterInitialization(Object bean, String beanName);
 
