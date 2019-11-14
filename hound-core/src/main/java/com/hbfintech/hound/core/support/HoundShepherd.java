@@ -17,6 +17,8 @@ public class HoundShepherd implements HoundContext
 
     private HoundComponentRegistry componentRegistry;
 
+    private
+
     private SorterInitializer sorterLoader;
 
     private HoundBridgeRegistry houndBridgeRegistry;

@@ -6,6 +6,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.OutputStreamAppender;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
+import com.hbfintech.hound.core.support.HoundEventListener;
 import com.hbfintech.hound.core.support.HoundListener;
 import org.slf4j.LoggerFactory;
 
@@ -13,12 +14,30 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
+/**
+ * @author frank
+ */
 @HoundListener
-public class LogbackHoundInitializer
+public class LogbackHoundInitializer implements HoundEventListener
 {
     private volatile AtomicBoolean isAlreadyConfiged = new AtomicBoolean(false);
 
-    private void init()
+    @Override
+    public void beforeInitialization(Object bean, String beanName)
+    {
+        reinitLogbackPattern();
+    }
+
+    @Override
+    public void afterInitialization(Object bean, String beanName)
+    {
+        // do nothing
+    }
+
+    /**
+     * 通过更新logback appender pattern的方式动态加上hound自定义标签
+     */
+    private void reinitLogbackPattern()
     {
         if (isAlreadyConfiged.get())
         {
@@ -55,7 +74,6 @@ public class LogbackHoundInitializer
             pattern = pattern + "|[%X{" +
                     TraceContextConstants.TRACE_CONTEXT_HEAD + "}]";
 
-//            encoder.setImmediateFlush(true);
             encoder.setPattern(pattern);
             encoder.start();
         }
