@@ -13,9 +13,9 @@ public class HoundShepherd implements HoundContext
 {
     private LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 
-    private HoundEventNotifier houndEventNotifier;
-
     private static HoundContext shepherd;
+
+    private HoundEventNotifier houndEventNotifier;
 
     private HoundComponentRegistry componentRegistry;
 
@@ -41,6 +41,8 @@ public class HoundShepherd implements HoundContext
         houndBridgeRegistry.init();
         houndBridgeAutowirer.init();
         houndEventNotifier.init();
+
+        publishEvent(new HoundShepherdInitializedEvent(this,null));
     }
 
     @Override
@@ -61,6 +63,19 @@ public class HoundShepherd implements HoundContext
         return houndBridgeRegistry.getBridge(bridgeName);
     }
 
+    @Override
+    public void publishEvent(@NonNull EventObject event)
+    {
+        houndEventNotifier.notify(event);
+    }
+
+    @Override
+    public void sort()
+    {
+        //TODO： 待优化，准备使用单线程事件驱动模型，正在斟酌如何实现
+        sorterLoader.getFirstSorter().sort();
+    }
+
     public static HoundContext getContext()
     {
         if(null == shepherd)
@@ -71,10 +86,4 @@ public class HoundShepherd implements HoundContext
         return shepherd;
     }
 
-    @Override
-    public void sort()
-    {
-        //TODO： 待优化，准备使用单线程事件驱动模型，正在斟酌如何实现
-        sorterLoader.getFirstSorter().sort();
-    }
 }

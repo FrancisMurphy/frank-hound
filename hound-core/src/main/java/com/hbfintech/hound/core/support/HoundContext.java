@@ -2,6 +2,10 @@ package com.hbfintech.hound.core.support;
 
 import lombok.NonNull;
 
+/**
+ *
+ * @author frank
+ */
 public interface HoundContext
 {
     /**
@@ -24,7 +28,7 @@ public interface HoundContext
      * Publish hound shepherd event.
      * @param event
      */
-    void publishEvent(@NonNull HoundShepherdEvent event);
+    void publishEvent(@NonNull EventObject event);
 
     /**
      *

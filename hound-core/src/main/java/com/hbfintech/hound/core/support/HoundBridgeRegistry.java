@@ -11,7 +11,7 @@ import java.util.Set;
 public class HoundBridgeRegistry
 {
     /**
-     * hound桥接器mapper
+     * hound bridge mapper
      * {@link com.hbfintech.hound.core.support.HoundBridge}
      */
     private Map<String, Object> bridgeMapper = new HashMap<>();

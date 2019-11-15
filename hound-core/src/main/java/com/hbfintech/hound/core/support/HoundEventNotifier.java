@@ -15,10 +15,13 @@ public class HoundEventNotifier
         houndEventListenerRegistry.init();
     }
 
-    public void notify(@NonNull final HoundShepherdEvent event)
+    public void notify(@NonNull final EventObject event)
     {
-        houndEventListenerRegistry.getShepherdEventListeners().forEachRemaining(
-                houndShepherdEventListener -> houndShepherdEventListener
-                        .onEvent(event));
+        if(event instanceof HoundShepherdEvent)
+        {
+            houndEventListenerRegistry.getShepherdEventListeners().forEachRemaining(
+                    houndShepherdEventListener -> houndShepherdEventListener
+                            .onEvent((HoundShepherdEvent)event));
+        }
     }
 }
