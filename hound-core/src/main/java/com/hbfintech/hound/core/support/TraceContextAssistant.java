@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
+//TODO:需要重写，垃圾代码
 public class TraceContextAssistant
 {
     private static Set<String> traceContextKeys = new HashSet<>();

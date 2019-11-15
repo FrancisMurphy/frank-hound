@@ -13,11 +13,11 @@ public class HoundShepherd implements HoundContext
 {
     private LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 
+    private HoundEventNotifier houndEventNotifier;
+
     private static HoundContext shepherd;
 
     private HoundComponentRegistry componentRegistry;
-
-    private
 
     private SorterInitializer sorterLoader;
 
@@ -31,6 +31,7 @@ public class HoundShepherd implements HoundContext
         sorterLoader= new SorterInitializer();
         houndBridgeRegistry = new HoundBridgeRegistry();
         houndBridgeAutowirer = new HoundBridgeAutowirer(houndBridgeRegistry);
+        houndEventNotifier = new HoundEventNotifier();
     }
 
     public void init()
@@ -39,6 +40,7 @@ public class HoundShepherd implements HoundContext
         sorterLoader.init();
         houndBridgeRegistry.init();
         houndBridgeAutowirer.init();
+        houndEventNotifier.init();
     }
 
     @Override

@@ -6,8 +6,9 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.OutputStreamAppender;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
-import com.hbfintech.hound.core.support.HoundEventListener;
-import com.hbfintech.hound.core.support.HoundListener;
+import com.hbfintech.hound.core.support.HoundShepherdEvent;
+import com.hbfintech.hound.core.support.HoundShepherdEventListener;
+import com.hbfintech.hound.core.support.HoundShepherdInitializedEvent;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
@@ -17,21 +18,17 @@ import java.util.stream.Collectors;
 /**
  * @author frank
  */
-@HoundListener
-public class LogbackHoundInitializer implements HoundEventListener
+public class LogbackHoundInitializer implements HoundShepherdEventListener
 {
     private volatile AtomicBoolean isAlreadyConfiged = new AtomicBoolean(false);
 
     @Override
-    public void beforeInitialization(Object bean, String beanName)
+    public void onEvent(HoundShepherdEvent event)
     {
-        reinitLogbackPattern();
-    }
-
-    @Override
-    public void afterInitialization(Object bean, String beanName)
-    {
-        // do nothing
+        if(event instanceof HoundShepherdInitializedEvent)
+        {
+            reinitLogbackPattern();
+        }
     }
 
     /**
@@ -70,6 +67,7 @@ public class LogbackHoundInitializer implements HoundEventListener
             PatternLayoutEncoder encoder = (PatternLayoutEncoder) appender
                     .getEncoder();
 
+            //TODO：可配置化
             String pattern = encoder.getPattern();
             pattern = pattern + "|[%X{" +
                     TraceContextConstants.TRACE_CONTEXT_HEAD + "}]";
