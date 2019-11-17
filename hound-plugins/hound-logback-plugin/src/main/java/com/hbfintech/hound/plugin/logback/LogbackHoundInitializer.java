@@ -5,6 +5,7 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.OutputStreamAppender;
+import ch.qos.logback.core.encoder.Encoder;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.support.HoundShepherdEvent;
 import com.hbfintech.hound.core.support.HoundShepherdEventListener;
@@ -64,16 +65,22 @@ public class LogbackHoundInitializer implements HoundShepherdEventListener
         {
             OutputStreamAppender<ILoggingEvent> appender = (OutputStreamAppender<ILoggingEvent>) appenderItem;
 
-            PatternLayoutEncoder encoder = (PatternLayoutEncoder) appender
-                    .getEncoder();
+            //兼容ch.qos.logback.core 与 ch.qos.logback.classic
+            Encoder encoder =  appender.getEncoder();
+            if(encoder instanceof PatternLayoutEncoder)
+            {
+                PatternLayoutEncoder patternLayoutEncoder = (PatternLayoutEncoder) appender
+                        .getEncoder();
 
-            //TODO：可配置化
-            String pattern = encoder.getPattern();
-            pattern = pattern + "|[%X{" +
-                    TraceContextConstants.TRACE_CONTEXT_HEAD + "}]";
+                //TODO：可配置化
+                String pattern = patternLayoutEncoder.getPattern();
+                pattern = pattern + "|[%X{" +
+                        TraceContextConstants.TRACE_CONTEXT_HEAD + "}]";
 
-            encoder.setPattern(pattern);
-            encoder.start();
+                patternLayoutEncoder.setPattern(pattern);
+                patternLayoutEncoder.start();
+            }
+
         }
 
         isAlreadyConfiged.set(true);

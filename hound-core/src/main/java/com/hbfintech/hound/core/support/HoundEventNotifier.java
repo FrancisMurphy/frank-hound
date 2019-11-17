@@ -8,6 +8,7 @@ public class HoundEventNotifier
 
     public HoundEventNotifier()
     {
+        houndEventListenerRegistry = new HoundEventListenerRegistry();
     }
 
     public void init()

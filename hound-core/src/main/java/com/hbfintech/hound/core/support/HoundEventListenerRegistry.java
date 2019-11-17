@@ -23,9 +23,10 @@ public class HoundEventListenerRegistry
             LinkedList<HoundShepherdEventListener> newShepherdEventListeners = null;
             try
             {
-                newShepherdEventListeners = HoundInstanceFactory
+                shepherdEventListeners.clear();
+                shepherdEventListeners.addAll(HoundInstanceFactory
                         .getAllChildInstanceByClass(
-                                HoundShepherdEventListener.class);
+                                HoundShepherdEventListener.class));
             }
             catch (IllegalAccessException | InstantiationException e)
             {
