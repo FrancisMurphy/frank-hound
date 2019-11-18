@@ -3,7 +3,6 @@ package com.hbfintech.hound.plugin.feign;
 import com.hbfintech.hound.core.requester.packer.Packer;
 import com.hbfintech.hound.core.support.HoundAutowired;
 import com.hbfintech.hound.core.support.HoundBridge;
-import com.hbfintech.hound.core.support.HoundShepherd;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 

@@ -2,7 +2,7 @@ package com.hbfintech.hound.core.acceptor.unpacker;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.support.HoundShepherd;
+import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.core.support.TraceContextAssistant;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import lombok.NonNull;
@@ -40,6 +40,6 @@ public abstract class BasicUnpacker implements Unpacker
             //do nothing
         }
 
-        HoundShepherd.getContext().sort();
+        Sheepehound.getContext().sort();
     }
 }

@@ -1,15 +1,14 @@
 package com.hbfintech.hound.core;
 
 import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
-import com.hbfintech.hound.core.support.HoundContext;
-import com.hbfintech.hound.core.support.HoundShepherd;
-import org.junit.Test;
+import com.hbfintech.hound.core.support.Hound;
+import com.hbfintech.hound.core.support.Sheepehound;
 
 public class HoundShepherdTest
 {
     public void houndShepherdInitTest()
     {
-        HoundContext houndContext = HoundShepherd.getContext();
-        Unpacker mvcUnpacker = houndContext.getComponent("mvc", Unpacker.class);
+        Hound houndContext = Sheepehound.getContext();
+        Unpacker mvcUnpacker = houndContext.getSheep("mvc", Unpacker.class);
     }
 }

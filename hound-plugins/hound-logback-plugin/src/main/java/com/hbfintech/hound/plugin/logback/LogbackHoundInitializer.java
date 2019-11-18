@@ -7,9 +7,9 @@ import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.OutputStreamAppender;
 import ch.qos.logback.core.encoder.Encoder;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
-import com.hbfintech.hound.core.support.HoundShepherdEvent;
-import com.hbfintech.hound.core.support.HoundShepherdEventListener;
-import com.hbfintech.hound.core.support.HoundShepherdInitializedEvent;
+import com.hbfintech.hound.core.support.SheepehoundEvent;
+import com.hbfintech.hound.core.support.SheepehoundEventListener;
+import com.hbfintech.hound.core.support.SheepehoundInitializedEvent;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
 /**
  * @author frank
  */
-public class LogbackHoundInitializer implements HoundShepherdEventListener
+public class LogbackHoundInitializer implements SheepehoundEventListener
 {
     private volatile AtomicBoolean isAlreadyConfiged = new AtomicBoolean(false);
 
     @Override
-    public void onEvent(HoundShepherdEvent event)
+    public void onEvent(SheepehoundEvent event)
     {
-        if(event instanceof HoundShepherdInitializedEvent)
+        if(event instanceof SheepehoundInitializedEvent)
         {
             reinitLogbackPattern();
         }

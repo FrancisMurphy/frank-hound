@@ -12,16 +12,16 @@ import lombok.NonNull;
  */
 public class HoundClazzLibrary
 {
-    public static final Class[] VALID_HOUND_COMPONENT_CLAZZES = { Sorter.class, Packer.class,
+    public static final Class[] VALID_HOUND_SHEEP_CLAZZES = { Sorter.class, Packer.class,
             Unpacker.class, Postman.class };
 
-    public static Class getHoundComponentClazz(@NonNull Class targetComponentClazz)
+    public static Class getHoundComponentClazz(@NonNull Class targetSheepClazz)
     {
-        for(Class validComponentClazz:VALID_HOUND_COMPONENT_CLAZZES)
+        for(Class validSheepClazz:VALID_HOUND_SHEEP_CLAZZES)
         {
-            if(validComponentClazz.isAssignableFrom(targetComponentClazz))
+            if(validSheepClazz.isAssignableFrom(targetSheepClazz))
             {
-                return validComponentClazz;
+                return validSheepClazz;
             }
         }
         return null;

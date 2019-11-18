@@ -1,7 +1,7 @@
 package com.hbfintech.hound.spi;
 
-import com.hbfintech.hound.core.support.HoundContext;
-import com.hbfintech.hound.core.support.HoundShepherd;
+import com.hbfintech.hound.core.support.Hound;
+import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.plugin.feign.HoundFeignRequestInterceptor;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -15,7 +15,7 @@ import org.springframework.core.Ordered;
 @Configuration
 public class HoundAutoConfiguration
 {
-    private HoundContext houndContext = HoundShepherd.getContext();
+    private Hound houndContext = Sheepehound.getContext();
 
     /**
      * feign

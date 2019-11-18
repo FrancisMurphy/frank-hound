@@ -1,14 +1,12 @@
 package com.hbfintech.hound.core.support;
 
-import lombok.Getter;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class HoundEventListenerRegistry
 {
-    private final List<HoundShepherdEventListener> shepherdEventListeners = new LinkedList<>();
+    private final List<SheepehoundEventListener> shepherdEventListeners = new LinkedList<>();
 
     public HoundEventListenerRegistry()
     {
@@ -20,13 +18,13 @@ public class HoundEventListenerRegistry
         synchronized (shepherdEventListeners)
         {
             //获取继承HoundShepherdEventListener接口的监听器
-            LinkedList<HoundShepherdEventListener> newShepherdEventListeners = null;
+            LinkedList<SheepehoundEventListener> newShepherdEventListeners = null;
             try
             {
                 shepherdEventListeners.clear();
                 shepherdEventListeners.addAll(HoundInstanceFactory
                         .getAllChildInstanceByClass(
-                                HoundShepherdEventListener.class));
+                                SheepehoundEventListener.class));
             }
             catch (IllegalAccessException | InstantiationException e)
             {
@@ -36,7 +34,7 @@ public class HoundEventListenerRegistry
         }
     }
 
-    public Iterator<HoundShepherdEventListener> getShepherdEventListeners()
+    public Iterator<SheepehoundEventListener> getShepherdEventListeners()
     {
         return shepherdEventListeners.iterator();
     }

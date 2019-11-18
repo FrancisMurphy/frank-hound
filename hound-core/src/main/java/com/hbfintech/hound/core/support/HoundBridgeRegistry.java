@@ -43,12 +43,12 @@ public class HoundBridgeRegistry
         Set<Class<?>> targetBridgeClazzSet = reflections.getTypesAnnotatedWith(
                 HoundBridge.class);
         Map<String, Object> targetBridgeClazzMap = new HashMap<>(targetBridgeClazzSet.size());
-        for(Class targetComponentClazz:targetBridgeClazzSet)
+        for(Class targetBridgelazz:targetBridgeClazzSet)
         {
             try
             {
                 //TODO:将实例化移入Instance Factory
-                targetBridgeClazzMap.put(((HoundBridge)targetComponentClazz.getAnnotation(HoundBridge.class)).value(),targetComponentClazz.newInstance());
+                targetBridgeClazzMap.put(((HoundBridge)targetBridgelazz.getAnnotation(HoundBridge.class)).value(),targetBridgelazz.newInstance());
             }
             catch (InstantiationException | IllegalAccessException e)
             {

@@ -6,18 +6,23 @@ import lombok.NonNull;
 import org.slf4j.LoggerFactory;
 
 /**
- * 初始化并持有容器等重要实例的上下文，作用类似于ApplicationContext
+ * Initialization entry of hound-core, instantiated by single lazy mode
+ * {@link Sheepehound#hound}
+ * Sheepehound is an implementation of the hund interface that provides
+ * the ability to initialize the portal's ioc and register corresponding hound beans
+ * {@link com.hbfintech.hound.core.support.HoundSheep}
+ *
  * @author frank
  */
-public class HoundShepherd implements HoundContext
+public class Sheepehound implements Hound
 {
     private LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 
-    private static HoundContext shepherd;
+    private static Hound hound;
 
     private HoundEventNotifier houndEventNotifier;
 
-    private HoundComponentRegistry componentRegistry;
+    private HoundSheepRegistry sheepRegistry;
 
     private SorterInitializer sorterLoader;
 
@@ -25,9 +30,9 @@ public class HoundShepherd implements HoundContext
 
     private HoundBridgeAutowirer houndBridgeAutowirer;
 
-    private HoundShepherd()
+    private Sheepehound()
     {
-        componentRegistry = new HoundComponentRegistry();
+        sheepRegistry = new HoundSheepRegistry();
         sorterLoader= new SorterInitializer();
         houndBridgeRegistry = new HoundBridgeRegistry();
         houndBridgeAutowirer = new HoundBridgeAutowirer(houndBridgeRegistry);
@@ -36,23 +41,23 @@ public class HoundShepherd implements HoundContext
 
     public void init()
     {
-        componentRegistry.init();
+        sheepRegistry.init();
         sorterLoader.init();
         houndBridgeRegistry.init();
         houndBridgeAutowirer.init();
         houndEventNotifier.init();
 
-        publishEvent(new HoundShepherdInitializedEvent(this,null));
+        publishEvent(new SheepehoundInitializedEvent(this,null));
     }
 
     @Override
-    public <T> T getComponent(@NonNull String componentName,@NonNull Class<T> componentClazz)
+    public <T> T getSheep(@NonNull String sheepName,@NonNull Class<T> sheepClazz)
     {
-        HoundComponentRegistry.HoundComponentGroup<T> basicContainer = componentRegistry
-                .getComponentsGroup(componentClazz);
+        HoundSheepRegistry.HoundSheepGroup<T> basicContainer = sheepRegistry
+                .getSheepGroup(sheepClazz);
         if(basicContainer!=null)
         {
-            return basicContainer.get(componentName);
+            return basicContainer.get(sheepName);
         }
         return null;
     }
@@ -76,14 +81,14 @@ public class HoundShepherd implements HoundContext
         sorterLoader.getFirstSorter().sort();
     }
 
-    public static HoundContext getContext()
+    public static Hound getHound()
     {
-        if(null == shepherd)
+        if(null == hound)
         {
-            shepherd = new HoundShepherd();
-            ((HoundShepherd)shepherd).init();
+            hound = new Sheepehound();
+            ((Sheepehound)hound).init();
         }
-        return shepherd;
+        return hound;
     }
 
 }

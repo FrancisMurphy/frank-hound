@@ -4,7 +4,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.acceptor.sorter.BaseSorter;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.support.HoundComponent;
+import com.hbfintech.hound.core.support.HoundSheep;
 import org.slf4j.MDC;
 import org.springframework.util.StringUtils;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * @author frank
  */
-@HoundComponent("logback")
+@HoundSheep("logback")
 public class LogbackSorter extends BaseSorter
 {
     public LogbackSorter()

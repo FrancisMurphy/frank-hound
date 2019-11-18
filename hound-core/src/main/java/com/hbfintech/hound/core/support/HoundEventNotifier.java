@@ -18,11 +18,11 @@ public class HoundEventNotifier
 
     public void notify(@NonNull final EventObject event)
     {
-        if(event instanceof HoundShepherdEvent)
+        if(event instanceof SheepehoundEvent)
         {
             houndEventListenerRegistry.getShepherdEventListeners().forEachRemaining(
                     houndShepherdEventListener -> houndShepherdEventListener
-                            .onEvent((HoundShepherdEvent)event));
+                            .onEvent((SheepehoundEvent)event));
         }
     }
 }
