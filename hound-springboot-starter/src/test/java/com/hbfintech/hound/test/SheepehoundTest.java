@@ -10,7 +10,7 @@ public class SheepehoundTest
     @Test
     public void houndShepherdInitTest()
     {
-        Hound houndContext = Sheepehound.getContext();
+        Hound houndContext = Sheepehound.getHound();
         Unpacker mvcUnpacker = houndContext.getSheep("mvc", Unpacker.class);
 
         Object mvcFilter = houndContext.getBridge("mvc");

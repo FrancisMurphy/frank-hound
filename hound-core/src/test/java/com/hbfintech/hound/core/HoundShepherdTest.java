@@ -8,7 +8,7 @@ public class HoundShepherdTest
 {
     public void houndShepherdInitTest()
     {
-        Hound houndContext = Sheepehound.getContext();
+        Hound houndContext = Sheepehound.getHound();
         Unpacker mvcUnpacker = houndContext.getSheep("mvc", Unpacker.class);
     }
 }

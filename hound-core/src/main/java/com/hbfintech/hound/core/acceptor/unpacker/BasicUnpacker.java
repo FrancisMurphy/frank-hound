@@ -40,6 +40,6 @@ public abstract class BasicUnpacker implements Unpacker
             //do nothing
         }
 
-        Sheepehound.getContext().sort();
+        Sheepehound.getHound().sort();
     }
 }
