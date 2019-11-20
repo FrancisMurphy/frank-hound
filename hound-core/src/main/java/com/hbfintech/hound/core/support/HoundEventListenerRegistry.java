@@ -18,7 +18,6 @@ public class HoundEventListenerRegistry
         synchronized (shepherdEventListeners)
         {
             //获取继承HoundShepherdEventListener接口的监听器
-            LinkedList<SheepehoundEventListener> newShepherdEventListeners = null;
             try
             {
                 shepherdEventListeners.clear();

@@ -2,6 +2,10 @@ package com.hbfintech.hound.core.support;
 
 import lombok.NonNull;
 
+/**
+ * Hound internal event notifier,that will notify hound event listener synchronously.
+ * @author frank
+ */
 public class HoundEventNotifier
 {
     private HoundEventListenerRegistry houndEventListenerRegistry;

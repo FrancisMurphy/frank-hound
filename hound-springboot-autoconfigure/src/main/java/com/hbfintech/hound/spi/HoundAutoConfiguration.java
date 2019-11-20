@@ -33,12 +33,20 @@ public class HoundAutoConfiguration
     @Bean
     public FilterRegistrationBean houndWebMvcFilterFilterRegistrationBean()
     {
-        HoundWebMvcFilter houndFilter = (HoundWebMvcFilter) houndContext.getBridge("mvc");
-        FilterRegistrationBean<HoundWebMvcFilter> registrationBean = new FilterRegistrationBean<>(houndFilter);
-        registrationBean.addUrlPatterns("/*");
-        registrationBean.setName("houndWebMvcFilter");
-        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        return registrationBean;
+        try
+        {
+            HoundWebMvcFilter houndFilter = (HoundWebMvcFilter) houndContext.getBridge("mvc");
+            FilterRegistrationBean<HoundWebMvcFilter> registrationBean = new FilterRegistrationBean<>(houndFilter);
+            registrationBean.addUrlPatterns("/*");
+            registrationBean.setName("houndWebMvcFilter");
+            registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+            return registrationBean;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -21,6 +21,15 @@ public class HoundWebMvcFilter implements Filter
     {
     }
 
+    /**
+     * This method needs to be implemented for downward compatibility
+     */
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException
+    {
+        //do nothing
+    }
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException
@@ -47,5 +56,14 @@ public class HoundWebMvcFilter implements Filter
         }
         mvcUnpacker.unpack(targetHeaders);
         chain.doFilter(request, response);
+    }
+
+    /**
+     * This method needs to be implemented for downward compatibility
+     */
+    @Override
+    public void destroy()
+    {
+        //do nothing
     }
 }

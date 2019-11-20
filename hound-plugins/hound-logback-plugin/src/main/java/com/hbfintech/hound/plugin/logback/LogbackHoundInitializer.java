@@ -33,7 +33,7 @@ public class LogbackHoundInitializer implements SheepehoundEventListener
     }
 
     /**
-     * 通过更新logback appender pattern的方式动态加上hound自定义标签
+     * Dynamically attach the around custom tag by updating the logback appender pattern
      */
     private void reinitLogbackPattern()
     {
@@ -56,7 +56,11 @@ public class LogbackHoundInitializer implements SheepehoundEventListener
                                     .iteratorForAppenders();
                             while (it.hasNext())
                             {
-                                appenderSet.add(it.next());
+                                Appender<ILoggingEvent> appender = it.next();
+                                if(appender instanceof OutputStreamAppender)
+                                {
+                                    appenderSet.add(appender);
+                                }
                             }
                         }
                 );
@@ -65,14 +69,14 @@ public class LogbackHoundInitializer implements SheepehoundEventListener
         {
             OutputStreamAppender<ILoggingEvent> appender = (OutputStreamAppender<ILoggingEvent>) appenderItem;
 
-            //兼容ch.qos.logback.core 与 ch.qos.logback.classic
+            //ch.qos.logback.classic
             Encoder encoder =  appender.getEncoder();
             if(encoder instanceof PatternLayoutEncoder)
             {
                 PatternLayoutEncoder patternLayoutEncoder = (PatternLayoutEncoder) appender
                         .getEncoder();
 
-                //TODO：可配置化
+                //TODO：动态配置
                 String pattern = patternLayoutEncoder.getPattern();
                 pattern = pattern + "|[%X{" +
                         TraceContextConstants.TRACE_CONTEXT_HEAD + "}]";
