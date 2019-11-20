@@ -2,6 +2,8 @@ package com.hbfintech.hound.core.acceptor.unpacker;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.context.TraceContext;
+import com.hbfintech.hound.core.event.HoundUnpackedEvent;
+import com.hbfintech.hound.core.support.Hound;
 import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.core.support.TraceContextAssistant;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
@@ -12,8 +14,10 @@ import java.util.Map;
 /**
  * @author frank
  */
-public abstract class BasicUnpacker implements Unpacker
+public abstract class BaseKvUnpacker implements Unpacker
 {
+    private Hound hound = Sheepehound.getHound();
+
     @Override
     public void unpack(@NonNull Map<String, String> unpackKvMapper)
     {
@@ -40,6 +44,8 @@ public abstract class BasicUnpacker implements Unpacker
             //do nothing
         }
 
-        Sheepehound.getHound().sort();
+        hound.publishEvent(new HoundUnpackedEvent(hound,null));
+
+        hound.sort();
     }
 }

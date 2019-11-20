@@ -1,29 +1,38 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.listener.HoundEventListener;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Hound event listener registry
+ * @author frank
+ */
 public class HoundEventListenerRegistry
 {
-    private final List<SheepehoundEventListener> shepherdEventListeners = new LinkedList<>();
+    private final List<HoundEventListener> shepherdEventListeners = new LinkedList<>();
 
     public HoundEventListenerRegistry()
     {
         //do nothing
     }
 
+    /**
+     * This method is thread safe
+     */
     public void init()
     {
         synchronized (shepherdEventListeners)
         {
-            //获取继承HoundShepherdEventListener接口的监听器
+            //Get listener that inherits the HoundShepherdEventListener interface
             try
             {
                 shepherdEventListeners.clear();
                 shepherdEventListeners.addAll(HoundInstanceFactory
                         .getAllChildInstanceByClass(
-                                SheepehoundEventListener.class));
+                                HoundEventListener.class));
             }
             catch (IllegalAccessException | InstantiationException e)
             {
@@ -33,7 +42,7 @@ public class HoundEventListenerRegistry
         }
     }
 
-    public Iterator<SheepehoundEventListener> getShepherdEventListeners()
+    public Iterator<HoundEventListener> getShepherdEventListeners()
     {
         return shepherdEventListeners.iterator();
     }

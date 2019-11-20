@@ -2,6 +2,7 @@ package com.hbfintech.hound.core.support;
 
 import ch.qos.logback.classic.LoggerContext;
 import com.hbfintech.hound.core.acceptor.sorter.SorterInitializer;
+import com.hbfintech.hound.core.event.HoundInitializedEvent;
 import lombok.NonNull;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +48,7 @@ public class Sheepehound implements Hound
         houndBridgeAutowirer.init();
         houndEventNotifier.init();
 
-        publishEvent(new SheepehoundInitializedEvent(this,null));
+        publishEvent(new HoundInitializedEvent(this,null));
     }
 
     @Override
