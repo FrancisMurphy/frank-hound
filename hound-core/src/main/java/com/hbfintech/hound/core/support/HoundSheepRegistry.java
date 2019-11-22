@@ -1,5 +1,6 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.common.Closeable;
 import lombok.Getter;
 import lombok.NonNull;
 import org.reflections.Reflections;
@@ -13,7 +14,7 @@ import java.util.*;
  *
  * @author frank
  */
-public class HoundSheepRegistry
+public class HoundSheepRegistry implements Closeable
 {
     /**
      * hound组件mapper
@@ -114,6 +115,12 @@ public class HoundSheepRegistry
     public <T> HoundSheepGroup<T> getSheepGroup(@NonNull Class<T> clazz)
     {
         return sheepMapper.get(clazz);
+    }
+
+    @Override
+    public void close()
+    {
+        sheepMapper.clear();
     }
 
     /**

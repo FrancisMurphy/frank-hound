@@ -1,5 +1,6 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.common.Closeable;
 import lombok.NonNull;
 import org.reflections.Reflections;
 
@@ -8,7 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class HoundBridgeRegistry
+public class HoundBridgeRegistry implements Closeable
 {
     /**
      * hound bridge mapper
@@ -66,5 +67,11 @@ public class HoundBridgeRegistry
     public Object getBridge(@NonNull String bridgeName)
     {
         return bridgeMapper.get(bridgeName);
+    }
+
+    @Override
+    public void close()
+    {
+        bridgeMapper.clear();
     }
 }

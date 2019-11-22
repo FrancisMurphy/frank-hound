@@ -5,5 +5,5 @@ import com.hbfintech.hound.core.context.TraceContext;
 
 public class TraceContextThreadLocalKeeper
 {
-    public static TransmittableThreadLocal<TraceContext> TRACE_TRACELOCAL_CONTEXT = new TransmittableThreadLocal<>();
+    public static final TransmittableThreadLocal<TraceContext> TRACE_TRACELOCAL_CONTEXT = new TransmittableThreadLocal<>();
 }

@@ -2,15 +2,14 @@ package com.hbfintech.hound.core.acceptor.sorter;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.support.Chain;
+import com.hbfintech.hound.core.common.Chain;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
-import lombok.Setter;
 
 /**
  * Chain of responsibility
  * BaseSorter 实现了分拣员的持有获取上下文对象、基本分拣流程、自身的链式处理，
  * 分拣员的基本分拣流程实现通过实现{@link com.hbfintech.hound.core.acceptor.sorter.Sorter}
- * 责任链实现通过{@link com.hbfintech.hound.core.support.Chain}
+ * 责任链实现通过{@link Chain}
  * 分拣的具体业务实现通过子类实现
  * @author frank
  */

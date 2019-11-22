@@ -11,14 +11,9 @@ public class HoundEventNotifier
 {
     private HoundEventListenerRegistry houndEventListenerRegistry;
 
-    public HoundEventNotifier()
+    public HoundEventNotifier(HoundEventListenerRegistry houndEventListenerRegistry)
     {
-        houndEventListenerRegistry = new HoundEventListenerRegistry();
-    }
-
-    public void init()
-    {
-        houndEventListenerRegistry.init();
+        this.houndEventListenerRegistry = houndEventListenerRegistry;
     }
 
     public void notify(@NonNull final EventObject event)

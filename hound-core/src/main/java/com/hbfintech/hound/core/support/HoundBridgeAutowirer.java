@@ -12,15 +12,7 @@ import java.util.Map;
  */
 public class HoundBridgeAutowirer
 {
-    private HoundBridgeRegistry houndBridgeRegistry;
-
-    public HoundBridgeAutowirer(
-            @NonNull HoundBridgeRegistry houndBridgeRegistry)
-    {
-        this.houndBridgeRegistry = houndBridgeRegistry;
-    }
-
-    public void init()
+    public void init(@NonNull HoundBridgeRegistry houndBridgeRegistry)
     {
         //遍历bridge
         if (houndBridgeRegistry == null)

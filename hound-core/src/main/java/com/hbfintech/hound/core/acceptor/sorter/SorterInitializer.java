@@ -1,6 +1,6 @@
 package com.hbfintech.hound.core.acceptor.sorter;
 
-import com.hbfintech.hound.core.support.Chain;
+import com.hbfintech.hound.core.common.Chain;
 import com.hbfintech.hound.core.support.HoundInstanceFactory;
 import lombok.Getter;
 

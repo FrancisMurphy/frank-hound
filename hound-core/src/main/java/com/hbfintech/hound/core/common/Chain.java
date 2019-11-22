@@ -1,4 +1,4 @@
-package com.hbfintech.hound.core.support;
+package com.hbfintech.hound.core.common;
 
 /**
  * 责任链接口，用于隔离链处理与对应组件的业务实现
