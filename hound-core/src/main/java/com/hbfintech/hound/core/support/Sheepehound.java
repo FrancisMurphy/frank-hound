@@ -1,8 +1,7 @@
 package com.hbfintech.hound.core.support;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.hbfintech.hound.core.acceptor.sorter.SorterInitializer;
-import com.hbfintech.hound.core.common.AsyncHookThread;
+import com.hbfintech.hound.core.common.AsyncSimpleFuncThread;
 import com.hbfintech.hound.core.event.HoundInitializedEvent;
 import lombok.NonNull;
 import org.slf4j.LoggerFactory;
@@ -26,46 +25,52 @@ public class Sheepehound implements Hound
 
     private HoundEventNotifier houndEventNotifier;
 
-    private HoundSheepRegistry sheepRegistry;
+    private SheepRegistry sheepRegistry;
 
-    private SorterInitializer sorterInitializer;
+    private SorterRegistry sorterRegistry;
 
-    private HoundBridgeRegistry houndBridgeRegistry;
+    private BridgeRegistry bridgeRegistry;
 
-    private HoundBridgeAutowirer houndBridgeAutowirer;
+    private BridgeAutowirer bridgeAutowirer;
 
     private HoundEventListenerRegistry houndEventListenerRegistry;
 
     private Sheepehound()
     {
-        sheepRegistry = new HoundSheepRegistry();
-        sorterInitializer = new SorterInitializer();
-        houndBridgeRegistry = new HoundBridgeRegistry();
-        houndBridgeAutowirer = new HoundBridgeAutowirer();
+        sheepRegistry = new SheepRegistry();
+        sorterRegistry = new SorterRegistry();
+        bridgeRegistry = new BridgeRegistry();
+        bridgeAutowirer = new BridgeAutowirer();
         houndEventListenerRegistry = new HoundEventListenerRegistry();
         houndEventNotifier = new HoundEventNotifier(houndEventListenerRegistry);
     }
 
     private void init()
     {
-        //Init
+        //Init hound environment
+
+
+        //Init hound sheep
         sheepRegistry.init();
-        sorterInitializer.init();
-        houndBridgeRegistry.init();
-        houndBridgeAutowirer.init(houndBridgeRegistry);
+        sorterRegistry.init();
+        bridgeRegistry.init();
+        bridgeAutowirer.init(bridgeRegistry);
         houndEventListenerRegistry.init();
 
-        //Publish initialized event
-        publishEvent(new HoundInitializedEvent(this,null));
+        //Init func list
 
-        //Register close hook
-        Runtime.getRuntime().addShutdownHook(new AsyncHookThread(this::close));
+
+        //Publish initialized event
+        publishEvent(new HoundInitializedEvent(this));
+
+        //Register close hook func
+        Runtime.getRuntime().addShutdownHook(new AsyncSimpleFuncThread(this::close));
     }
 
     @Override
     public <T> T getSheep(@NonNull String sheepName,@NonNull Class<T> sheepClazz)
     {
-        HoundSheepRegistry.HoundSheepGroup<T> basicContainer = sheepRegistry
+        SheepRegistry.HoundSheepGroup<T> basicContainer = sheepRegistry
                 .getSheepGroup(sheepClazz);
         if(basicContainer!=null)
         {
@@ -77,7 +82,7 @@ public class Sheepehound implements Hound
     @Override
     public Object getBridge(@NonNull String bridgeName)
     {
-        return houndBridgeRegistry.getBridge(bridgeName);
+        return bridgeRegistry.getBridge(bridgeName);
     }
 
     @Override
@@ -89,8 +94,7 @@ public class Sheepehound implements Hound
     @Override
     public void sort()
     {
-        //TODO： 待优化，准备使用单线程事件驱动模型，正在斟酌如何实现
-        sorterInitializer.getFirstSorter().sort();
+        sorterRegistry.getFirstSorter().sort();
     }
 
     public static synchronized Hound getHound()
@@ -104,15 +108,19 @@ public class Sheepehound implements Hound
     }
 
     /**
+     * TODO:待改进，写死的手动回收，考虑通过自动化回收替代
      * Avoid being called by an external method in the form of privatization of the method
      */
     private void close()
     {
         sheepRegistry.close();
         sheepRegistry = null;
-        houndBridgeRegistry.close();
-        houndBridgeRegistry = null;
+        bridgeRegistry.close();
+        bridgeRegistry = null;
         houndEventListenerRegistry.close();
         houndEventListenerRegistry = null;
+        sorterRegistry.close();
+        sorterRegistry = null;
+        houndEventNotifier = null;
     }
 }

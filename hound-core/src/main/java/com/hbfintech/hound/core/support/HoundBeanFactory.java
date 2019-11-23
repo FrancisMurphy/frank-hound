@@ -11,7 +11,7 @@ import java.util.Set;
  * Hound instance 工厂，用于扫描
  * @author frank
  */
-public class HoundInstanceFactory
+public class HoundBeanFactory
 {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <T> LinkedList<T> getAllChildInstanceByClass(@NonNull Class<T> clazz)

@@ -11,10 +11,9 @@ public class HoundInitializedEvent extends HoundEvent
     /**
      * Used to listen for Initialization events for {@link Hound}
      * @param source Hound instance that publish event
-     * @param args Custom parameter
      */
-    public HoundInitializedEvent(Hound source, String[] args)
+    public HoundInitializedEvent(Hound source)
     {
-        super(source, args);
+        super(source);
     }
 }

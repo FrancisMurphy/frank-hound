@@ -2,7 +2,8 @@ package com.hbfintech.hound.core.acceptor.unpacker;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.context.TraceContext;
-import com.hbfintech.hound.core.event.HoundUnpackedEvent;
+import com.hbfintech.hound.core.event.SortEvent;
+import com.hbfintech.hound.core.event.UnpackedEvent;
 import com.hbfintech.hound.core.support.Hound;
 import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.core.support.TraceContextAssistant;
@@ -44,8 +45,8 @@ public abstract class BaseKvUnpacker implements Unpacker
             //do nothing
         }
 
-        hound.publishEvent(new HoundUnpackedEvent(hound,null));
+        hound.publishEvent(new UnpackedEvent(hound));
 
-        hound.sort();
+        hound.publishEvent(new SortEvent(hound,hound::sort));
     }
 }

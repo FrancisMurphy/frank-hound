@@ -31,7 +31,7 @@ public class HoundEventListenerRegistry implements Closeable
             try
             {
                 shepherdEventListeners.clear();
-                shepherdEventListeners.addAll(HoundInstanceFactory
+                shepherdEventListeners.addAll(HoundBeanFactory
                         .getAllChildInstanceByClass(
                                 HoundEventListener.class));
             }

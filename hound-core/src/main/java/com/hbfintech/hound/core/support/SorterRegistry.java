@@ -1,7 +1,8 @@
-package com.hbfintech.hound.core.acceptor.sorter;
+package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.acceptor.sorter.Sorter;
 import com.hbfintech.hound.core.common.Chain;
-import com.hbfintech.hound.core.support.HoundInstanceFactory;
+import com.hbfintech.hound.core.common.Closeable;
 import lombok.Getter;
 
 import java.util.Iterator;
@@ -11,12 +12,12 @@ import java.util.LinkedList;
  * Sorter manager
  * @author frank
  */
-public class SorterInitializer
+public class SorterRegistry implements Closeable
 {
     @Getter
     private Sorter firstSorter;
 
-    public SorterInitializer()
+    public SorterRegistry()
     {
     }
 
@@ -26,7 +27,7 @@ public class SorterInitializer
         LinkedList<Sorter> sorters = null;
         try
         {
-            sorters = HoundInstanceFactory.getAllChildInstanceByClass(Sorter.class);
+            sorters = HoundBeanFactory.getAllChildInstanceByClass(Sorter.class);
         }
         catch (IllegalAccessException | InstantiationException e)
         {
@@ -55,5 +56,11 @@ public class SorterInitializer
                 oldMan = (Chain<Sorter>) iterator.next();
             }
         }
+    }
+
+    @Override
+    public void close()
+    {
+        firstSorter = null;
     }
 }

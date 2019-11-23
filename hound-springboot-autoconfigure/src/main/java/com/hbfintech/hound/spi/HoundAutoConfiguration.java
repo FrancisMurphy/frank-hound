@@ -15,7 +15,12 @@ import org.springframework.core.Ordered;
 @Configuration
 public class HoundAutoConfiguration
 {
-    private Hound houndContext = Sheepehound.getHound();
+    private Hound houndContext;
+
+    public HoundAutoConfiguration()
+    {
+        this.houndContext = Sheepehound.getHound();
+    }
 
     /**
      * feign

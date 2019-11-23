@@ -3,11 +3,11 @@ package com.hbfintech.hound.core.support;
 import java.lang.annotation.*;
 
 /**
- * Sheep managed by dogs that can be understood as a java bean.
+ * Sheep managed by hound that can be understood as a java bean.
  * The loading, acquisition and maintenance of sheep in hound are all through the bean
  * container (similar to Spring singleton) for IOC, to achieve the purpose of expansion and monitoring.
  * By simply adding this note to the corresponding bean, Hound automatically discovers and puts
- * the device in as a bean into the Hound`s {@link HoundSheepRegistry}
+ * the device in as a bean into the Hound`s {@link SheepRegistry}
  * The normal use of the bean is required, and in addition to declaring this note,
  * the corresponding bean implementation class also needs to implement the interface capability correspondingly
  * {@link com.hbfintech.hound.core.acceptor.sorter.Sorter}

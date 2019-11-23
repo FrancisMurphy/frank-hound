@@ -4,7 +4,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.event.HoundEvent;
-import com.hbfintech.hound.core.event.HoundUnpackedEvent;
+import com.hbfintech.hound.core.event.UnpackedEvent;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import org.springframework.util.StringUtils;
 
@@ -20,7 +20,7 @@ public class UnpackedTraceIdListener implements HoundEventListener
     @Override
     public void onEvent(HoundEvent event)
     {
-        if(event instanceof HoundUnpackedEvent)
+        if(event instanceof UnpackedEvent)
         {
             initTraceId(traceContextThreadLocal);
         }

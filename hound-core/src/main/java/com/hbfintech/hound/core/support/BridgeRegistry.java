@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class HoundBridgeRegistry implements Closeable
+public class BridgeRegistry implements Closeable
 {
     /**
      * hound bridge mapper
@@ -17,7 +17,7 @@ public class HoundBridgeRegistry implements Closeable
      */
     private Map<String, Object> bridgeMapper = new HashMap<>();
 
-    public HoundBridgeRegistry()
+    public BridgeRegistry()
     {
     }
 

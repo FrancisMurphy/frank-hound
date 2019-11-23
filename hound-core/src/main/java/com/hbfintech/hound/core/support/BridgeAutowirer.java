@@ -7,14 +7,14 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Hound bridge 自动注入器
+ * Hound bridge automatic injector
  * @author frank
  */
-public class HoundBridgeAutowirer
+public class BridgeAutowirer
 {
-    public void init(@NonNull HoundBridgeRegistry houndBridgeRegistry)
+    public void init(@NonNull BridgeRegistry houndBridgeRegistry)
     {
-        //遍历bridge
+        //Traversing bridge
         if (houndBridgeRegistry == null)
         {
             throw new HoundException(
@@ -30,7 +30,7 @@ public class HoundBridgeAutowirer
             final Object bridgeObj = bridgeItem.getValue();
             final Class bridgeClazz = bridgeObj.getClass();
 
-            //获取声明了{@link HoundAutowired}的成员
+            //Got field which statement {@link HoundAutowired}
             for (Field field : bridgeClazz.getDeclaredFields())
             {
                 if (!field.isAnnotationPresent(HoundAutowired.class))

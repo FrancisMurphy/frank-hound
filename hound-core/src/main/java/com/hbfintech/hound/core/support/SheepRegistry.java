@@ -10,11 +10,11 @@ import java.util.*;
 /**
  * The hound sheep registry that find and instantiate
  * the hound sheep what declare {@link HoundSheep}
- * and register it in this instance {@link HoundSheepRegistry#sheepMapper}.
+ * and register it in this instance {@link SheepRegistry#sheepMapper}.
  *
  * @author frank
  */
-public class HoundSheepRegistry implements Closeable
+public class SheepRegistry implements Closeable
 {
     /**
      * hound组件mapper
@@ -22,7 +22,7 @@ public class HoundSheepRegistry implements Closeable
      */
     private Map<Class, HoundSheepGroup> sheepMapper = new HashMap<>();
 
-    public HoundSheepRegistry()
+    public SheepRegistry()
     {
     }
 
