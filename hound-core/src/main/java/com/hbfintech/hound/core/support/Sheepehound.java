@@ -14,12 +14,12 @@ import org.slf4j.LoggerFactory;
  * the ability to initialize the portal's ioc and register corresponding hound beans
  * {@link com.hbfintech.hound.core.support.HoundSheep}
  *
- *
  * @author frank
  */
 public class Sheepehound implements Hound
 {
-    private LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    private LoggerContext loggerContext = (LoggerContext) LoggerFactory
+            .getILoggerFactory();
 
     private static Hound hound;
 
@@ -35,6 +35,8 @@ public class Sheepehound implements Hound
 
     private HoundEventListenerRegistry houndEventListenerRegistry;
 
+    private HoundAutoCloser autoCloser;
+
     private Sheepehound()
     {
         sheepRegistry = new SheepRegistry();
@@ -43,12 +45,12 @@ public class Sheepehound implements Hound
         bridgeAutowirer = new BridgeAutowirer();
         houndEventListenerRegistry = new HoundEventListenerRegistry();
         houndEventNotifier = new HoundEventNotifier(houndEventListenerRegistry);
+        autoCloser = new HoundAutoCloser();
     }
 
     private void init()
     {
         //Init hound environment
-
 
         //Init hound sheep
         sheepRegistry.init();
@@ -57,22 +59,25 @@ public class Sheepehound implements Hound
         bridgeAutowirer.init(bridgeRegistry);
         houndEventListenerRegistry.init();
 
-        //Init func list
-
-
         //Publish initialized event
         publishEvent(new HoundInitializedEvent(this));
 
+        //Register closer which can release related resources at the end of the process automatically
+        autoCloser.registerAutoCloser(sheepRegistry, sorterRegistry,
+                bridgeRegistry, houndEventListenerRegistry);
+
         //Register close hook func
-        Runtime.getRuntime().addShutdownHook(new AsyncSimpleFuncThread(this::close));
+        Runtime.getRuntime()
+                .addShutdownHook(new AsyncSimpleFuncThread(this::close));
     }
 
     @Override
-    public <T> T getSheep(@NonNull String sheepName,@NonNull Class<T> sheepClazz)
+    public <T> T getSheep(@NonNull String sheepName,
+            @NonNull Class<T> sheepClazz)
     {
         SheepRegistry.HoundSheepGroup<T> basicContainer = sheepRegistry
                 .getSheepGroup(sheepClazz);
-        if(basicContainer!=null)
+        if (basicContainer != null)
         {
             return basicContainer.get(sheepName);
         }
@@ -99,28 +104,19 @@ public class Sheepehound implements Hound
 
     public static synchronized Hound getHound()
     {
-        if(null == hound)
+        if (null == hound)
         {
             hound = new Sheepehound();
-            ((Sheepehound)hound).init();
+            ((Sheepehound) hound).init();
         }
         return hound;
     }
 
     /**
-     * TODO:待改进，写死的手动回收，考虑通过自动化回收替代
      * Avoid being called by an external method in the form of privatization of the method
      */
     private void close()
     {
-        sheepRegistry.close();
-        sheepRegistry = null;
-        bridgeRegistry.close();
-        bridgeRegistry = null;
-        houndEventListenerRegistry.close();
-        houndEventListenerRegistry = null;
-        sorterRegistry.close();
-        sorterRegistry = null;
-        houndEventNotifier = null;
+        autoCloser.exec();
     }
 }

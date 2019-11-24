@@ -3,6 +3,10 @@ package com.hbfintech.hound.core.support;
 import lombok.NonNull;
 
 /**
+ * Hound is an interface that provides
+ * the ability to initialize the portal's ioc
+ * and register corresponding hound beans
+ * {@link com.hbfintech.hound.core.support.HoundSheep}
  *
  * @author frank
  */

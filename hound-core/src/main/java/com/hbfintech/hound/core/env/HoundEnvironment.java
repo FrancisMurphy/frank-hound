@@ -7,13 +7,7 @@ import java.util.Map;
  *
  * @author frank
  */
-public class HoundEnvironment
+public interface HoundEnvironment
 {
-    private Map<String,String> properties = new HashMap<>();
-
-
-
-
-
-
+    String getPropery(String propertyKey);
 }

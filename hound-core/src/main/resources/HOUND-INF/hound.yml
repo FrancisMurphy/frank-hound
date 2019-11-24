@@ -1,0 +1,8 @@
+config:
+  valid:
+    keys:
+      - hound.base.pkg
+  default:
+    base:
+      pkg: com.hbfintech.hound
+
