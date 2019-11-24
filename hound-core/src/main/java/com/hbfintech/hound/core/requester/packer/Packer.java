@@ -4,8 +4,12 @@ import java.util.function.BiConsumer;
 
 /**
  * 封包员
+ * @author frank
  */
 public interface Packer
 {
-    void pack(BiConsumer<String,String>  unpackFunc);
+    /**
+     * @param unpackFunc Packet function
+     */
+    void pack(BiConsumer<String,String> unpackFunc);
 }

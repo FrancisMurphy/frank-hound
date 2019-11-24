@@ -1,6 +1,6 @@
 package com.hbfintech.hound.core.support;
 
-import com.hbfintech.hound.core.event.HoundEvent;
+import com.hbfintech.hound.core.event.BaseHoundEvent;
 import lombok.NonNull;
 
 /**
@@ -18,11 +18,11 @@ public class HoundEventNotifier
 
     public void notify(@NonNull final EventObject event)
     {
-        if(event instanceof HoundEvent)
+        if(event instanceof BaseHoundEvent)
         {
             houndEventListenerRegistry.getShepherdEventListeners().forEachRemaining(
                     houndShepherdEventListener -> houndShepherdEventListener
-                            .onEvent((HoundEvent)event));
+                            .onEvent((BaseHoundEvent)event));
         }
     }
 }

@@ -8,18 +8,18 @@ import lombok.NonNull;
 /**
  * @author frank
  */
-public abstract class HoundEvent extends EventObject
+public abstract class BaseHoundEvent extends EventObject
 {
     @Getter
     private final String[] args;
 
-    public HoundEvent(Object source)
+    public BaseHoundEvent(Object source)
     {
         super(source);
         this.args = null;
     }
 
-    public HoundEvent(@NonNull Hound source,String[] args)
+    public BaseHoundEvent(@NonNull Hound source,String[] args)
     {
         super(source);
         this.args = args;

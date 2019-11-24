@@ -9,7 +9,7 @@ import lombok.NonNull;
  *
  * @author frank
  */
-public class SortEvent extends SimpleFuncEvent
+public class SortEvent extends AbstractSimpleFuncEvent
 {
     public SortEvent(@NonNull Hound source,
             SimpleFunction simpleFunc)

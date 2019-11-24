@@ -30,7 +30,7 @@ public class TraceContextAssistant
         }
         catch (IllegalAccessException e)
         {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

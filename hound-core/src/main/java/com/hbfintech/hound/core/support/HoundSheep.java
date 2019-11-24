@@ -16,6 +16,7 @@ import java.lang.annotation.*;
  * The specific function of the interface can be seen in the design document,
  * and the hund will put it in the right place after the initialization is completed.
  *
+ * @author frank
  */
 @Documented
 @Target(value = ElementType.TYPE)

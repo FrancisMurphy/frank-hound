@@ -7,11 +7,11 @@ import lombok.NonNull;
 /**
  * @author frank
  */
-public abstract class SimpleFuncEvent extends HoundEvent
+public abstract class AbstractSimpleFuncEvent extends BaseHoundEvent
 {
     private SimpleFunction simpleFunc;
 
-    public SimpleFuncEvent(
+    public AbstractSimpleFuncEvent(
             @NonNull Hound source,
             SimpleFunction simpleFunc)
     {

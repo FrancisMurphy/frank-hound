@@ -35,7 +35,7 @@ public interface Hound
     void publishEvent(@NonNull EventObject event);
 
     /**
-     *
+     * Trigger sorting operation
      */
     void sort();
 }

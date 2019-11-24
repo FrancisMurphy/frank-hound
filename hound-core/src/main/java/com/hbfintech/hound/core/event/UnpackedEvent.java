@@ -5,7 +5,7 @@ import com.hbfintech.hound.core.support.Hound;
 /**
  * @author frank
  */
-public class UnpackedEvent extends HoundEvent
+public class UnpackedEvent extends BaseHoundEvent
 {
     /**
      * Used to listen for processed events for {@link com.hbfintech.hound.core.acceptor.unpacker.Unpacker}

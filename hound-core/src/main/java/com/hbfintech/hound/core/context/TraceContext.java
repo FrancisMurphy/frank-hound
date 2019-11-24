@@ -5,6 +5,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ * The instance of this class is thread-safe
+ * @author frank
+ */
 public class TraceContext
 {
     /**
@@ -26,7 +31,7 @@ public class TraceContext
     {
         if(null == contextMap)
         {
-            contextMap = new HashMap<>(5);
+            contextMap = new HashMap<>();
         }
         this.contextMap.put(contextKey,contextValue);
     }

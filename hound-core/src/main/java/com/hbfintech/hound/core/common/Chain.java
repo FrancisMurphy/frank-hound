@@ -3,9 +3,13 @@ package com.hbfintech.hound.core.common;
 import com.hbfintech.hound.core.support.SorterRegistry;
 
 /**
- * 责任链接口，用于隔离链处理与对应组件的业务实现
- * 通过装饰器模式获取责任链能力，e.g:{@link SorterRegistry}
- * @param <T>
+ * Responsibility chain interface for isolating chain processing
+ * from business implementations of corresponding components
+ * Obtaining responsibility chain capability through decorator mode，
+ * e.g:{@link SorterRegistry}
+ *
+ * @author frank
+ * @param <T> Chain of responsibility instance type
  */
 public interface Chain<T>
 {

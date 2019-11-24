@@ -13,6 +13,10 @@ import java.util.Set;
  */
 public class HoundBeanFactory
 {
+    private HoundBeanFactory()
+    {
+    }
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <T> LinkedList<T> getAllChildInstanceByClass(@NonNull Class<T> clazz)
             throws IllegalAccessException, InstantiationException

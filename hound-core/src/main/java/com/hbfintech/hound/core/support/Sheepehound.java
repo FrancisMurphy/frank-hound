@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Sheepehound implements Hound
 {
-    private LoggerContext loggerContext = (LoggerContext) LoggerFactory
+    private final LoggerContext loggerContext = (LoggerContext) LoggerFactory
             .getILoggerFactory();
 
     private static Hound hound;

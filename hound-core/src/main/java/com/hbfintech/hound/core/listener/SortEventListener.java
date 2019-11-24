@@ -1,6 +1,6 @@
 package com.hbfintech.hound.core.listener;
 
-import com.hbfintech.hound.core.event.HoundEvent;
+import com.hbfintech.hound.core.event.BaseHoundEvent;
 import com.hbfintech.hound.core.event.SortEvent;
 
 /**
@@ -9,7 +9,7 @@ import com.hbfintech.hound.core.event.SortEvent;
 public class SortEventListener implements HoundEventListener
 {
     @Override
-    public void onEvent(HoundEvent event)
+    public void onEvent(BaseHoundEvent event)
     {
         if(event instanceof SortEvent)
         {

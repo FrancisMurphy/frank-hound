@@ -7,5 +7,8 @@ package com.hbfintech.hound.core.common;
  */
 public interface Closeable
 {
+    /**
+     * Implementation of close,it's usually a recycling operation.
+     */
     void close();
 }

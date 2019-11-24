@@ -7,7 +7,7 @@ import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.OutputStreamAppender;
 import ch.qos.logback.core.encoder.Encoder;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
-import com.hbfintech.hound.core.event.HoundEvent;
+import com.hbfintech.hound.core.event.BaseHoundEvent;
 import com.hbfintech.hound.core.listener.HoundEventListener;
 import com.hbfintech.hound.core.event.HoundInitializedEvent;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ public class LogbackHoundInitializer implements HoundEventListener
     private volatile AtomicBoolean isAlreadyConfiged = new AtomicBoolean(false);
 
     @Override
-    public void onEvent(HoundEvent event)
+    public void onEvent(BaseHoundEvent event)
     {
         if(event instanceof HoundInitializedEvent)
         {

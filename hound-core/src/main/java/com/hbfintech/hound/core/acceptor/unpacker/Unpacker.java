@@ -1,15 +1,16 @@
 package com.hbfintech.hound.core.acceptor.unpacker;
 
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 /**
- * 拆包员
+ * Unpacker
+ * @author frank
  */
 public interface Unpacker
 {
     /**
-     * @param unpackFunc
+     * unpack interface
+     * @param unpackParam params which wait deal
      */
-    void unpack(Map<String,String> unpackFunc);
+    void unpack(Map<String,String> unpackParam);
 }

@@ -17,10 +17,6 @@ public class BridgeRegistry implements Closeable
      */
     private Map<String, Object> bridgeMapper = new HashMap<>();
 
-    public BridgeRegistry()
-    {
-    }
-
     public void init()
     {
         initBriage();

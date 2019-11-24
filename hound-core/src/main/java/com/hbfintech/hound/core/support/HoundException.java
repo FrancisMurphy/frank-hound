@@ -2,7 +2,7 @@ package com.hbfintech.hound.core.support;
 
 public class HoundException extends RuntimeException
 {
-    private String houndExceptionMsg;
+    private final String houndExceptionMsg;
 
     public HoundException(String houndExceptionMsg)
     {

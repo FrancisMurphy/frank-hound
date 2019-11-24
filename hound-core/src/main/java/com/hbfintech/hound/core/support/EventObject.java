@@ -5,6 +5,7 @@ package com.hbfintech.hound.core.support;
  * All Events are constructed with a reference to the object, the "source",
  * that is logically deemed to be the object upon which the Event in question
  * initially occurred upon.
+ * @author frank
  */
 
 public class EventObject
