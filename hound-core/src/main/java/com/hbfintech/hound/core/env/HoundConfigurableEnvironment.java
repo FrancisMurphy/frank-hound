@@ -1,20 +1,31 @@
 package com.hbfintech.hound.core.env;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author frank
+ */
 public interface HoundConfigurableEnvironment extends HoundEnvironment
 {
-    private Map<String,String> properties = new ConcurrentHashMap<>();
+    /**
+     *
+     * @param propertyKey
+     * @param propertyValue
+     */
+    void setProperty(String propertyKey,String propertyValue);
 
-    public void setProperty(String propertyKey,String propertyValue)
-    {
-        properties.put(propertyKey,propertyValue);
-    }
+    /**
+     *
+     * @param propertyKey
+     * @param defaultValue
+     */
+    void setDefalutProperty(String propertyKey,String defaultValue);
 
-    @Override
-    public String getPropery(String propertyKey)
-    {
-        return properties.get(propertyKey);
-    }
+    /**
+     *
+     * Refresh environment of hound
+     */
+    void refresh();
 }
