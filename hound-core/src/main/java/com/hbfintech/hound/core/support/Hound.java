@@ -1,5 +1,6 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.env.HoundEnvironment;
 import lombok.NonNull;
 
 /**
@@ -38,4 +39,6 @@ public interface Hound
      * Trigger sorting operation
      */
     void sort();
+
+    HoundEnvironment getEnvironment();
 }

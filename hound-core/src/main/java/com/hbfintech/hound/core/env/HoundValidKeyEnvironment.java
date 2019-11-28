@@ -2,6 +2,7 @@ package com.hbfintech.hound.core.env;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author frank
@@ -9,6 +10,10 @@ import java.util.Set;
 public class HoundValidKeyEnvironment extends HoundConfigEnvDecorator
 {
     private Set<String> validKeys = new HashSet<>();
+
+    private static final String VALID_KEY_CONFIG_KEY = "config.valid.keys";
+
+    private AtomicBoolean isInitialized = new AtomicBoolean(false);
 
     public HoundValidKeyEnvironment(
             HoundConfigurableEnvironment houndEnv)
@@ -19,8 +24,14 @@ public class HoundValidKeyEnvironment extends HoundConfigEnvDecorator
     @Override
     public void refresh()
     {
-
         super.refresh();
+
+        if(!isInitialized.get())
+        {
+            getDefalutProperty(VALID_KEY_CONFIG_KEY);
+
+
+        }
     }
 
     @Override

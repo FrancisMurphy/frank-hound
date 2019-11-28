@@ -1,6 +1,9 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.common.BasePkgRegistry;
 import com.hbfintech.hound.core.common.Closeable;
+import com.hbfintech.hound.core.common.Refreshable;
+import com.hbfintech.hound.core.env.HoundEnvironment;
 import lombok.Getter;
 import lombok.NonNull;
 import org.reflections.Reflections;
@@ -14,8 +17,10 @@ import java.util.*;
  *
  * @author frank
  */
-public class SheepRegistry implements Closeable
+public class SheepRegistry extends BasePkgRegistry
+        implements Closeable
 {
+
     /**
      * hound组件mapper
      * {@link HoundSheep}
@@ -49,7 +54,7 @@ public class SheepRegistry implements Closeable
     private Map<Class<?>, HoundSheep> getTargetHoundSheep()
     {
         Map<Class<?>, HoundSheep> targetSheepClazzMap = scanSpecifyPkgComponent(
-                "com.hbfintech.hound");
+                DEFAULT_BASE_PKG);
 
         //TODO:后续支持通过配置，扫描其他包名下的hound拓展插件
 
@@ -121,6 +126,12 @@ public class SheepRegistry implements Closeable
     public void close()
     {
         sheepMapper.clear();
+    }
+
+    @Override
+    public void refresh(HoundEnvironment houndEnvironment)
+    {
+//        String configBasePkg
     }
 
     /**

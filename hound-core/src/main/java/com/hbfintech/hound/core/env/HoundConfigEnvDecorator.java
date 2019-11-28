@@ -1,7 +1,5 @@
 package com.hbfintech.hound.core.env;
 
-import java.util.Set;
-
 /**
  * The decorator for {@link HoundConfigurableEnvironment}
  * @author frank
@@ -33,6 +31,7 @@ public class HoundConfigEnvDecorator implements HoundConfigurableEnvironment
     {
         houndEnv.refresh();
     }
+
 
     @Override
     public String getDefalutProperty(String propertyKey)

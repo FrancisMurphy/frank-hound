@@ -1,8 +1,8 @@
 package com.hbfintech.hound.core.support;
 
+import com.hbfintech.hound.core.common.StringUtils;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import lombok.NonNull;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;

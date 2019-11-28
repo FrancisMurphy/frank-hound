@@ -2,6 +2,10 @@ package com.hbfintech.hound.core.support;
 
 import ch.qos.logback.classic.LoggerContext;
 import com.hbfintech.hound.core.common.AsyncSimpleFuncThread;
+import com.hbfintech.hound.core.env.BaseHoundEnvironment;
+import com.hbfintech.hound.core.env.HoundConfigurableEnvironment;
+import com.hbfintech.hound.core.env.HoundEnvironment;
+import com.hbfintech.hound.core.env.HoundValidKeyEnvironment;
 import com.hbfintech.hound.core.event.HoundInitializedEvent;
 import lombok.NonNull;
 import org.slf4j.LoggerFactory;
@@ -37,8 +41,11 @@ public class Sheepehound implements Hound
 
     private HoundAutoCloser autoCloser;
 
+    private HoundConfigurableEnvironment houndEnvironment;
+
     private Sheepehound()
     {
+        houndEnvironment = new HoundValidKeyEnvironment(new BaseHoundEnvironment());
         sheepRegistry = new SheepRegistry();
         sorterRegistry = new SorterRegistry();
         bridgeRegistry = new BridgeRegistry();
@@ -51,6 +58,7 @@ public class Sheepehound implements Hound
     private void init()
     {
         //Init hound environment
+//        houndEnvironment.refresh();
 
         //Init hound sheep
         sheepRegistry.init();
@@ -100,6 +108,12 @@ public class Sheepehound implements Hound
     public void sort()
     {
         sorterRegistry.getFirstSorter().sort();
+    }
+
+    @Override
+    public HoundEnvironment getEnvironment()
+    {
+        return houndEnvironment;
     }
 
     public static synchronized Hound getHound()

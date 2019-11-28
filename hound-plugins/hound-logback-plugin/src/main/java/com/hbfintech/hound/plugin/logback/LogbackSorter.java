@@ -2,11 +2,11 @@ package com.hbfintech.hound.plugin.logback;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.hbfintech.hound.core.acceptor.sorter.BaseSorter;
+import com.hbfintech.hound.core.common.StringUtils;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.support.HoundSheep;
 import org.slf4j.MDC;
-import org.springframework.util.StringUtils;
 
 /**
  * @author frank

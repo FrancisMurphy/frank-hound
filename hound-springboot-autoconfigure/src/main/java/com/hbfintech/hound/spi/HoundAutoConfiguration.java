@@ -4,10 +4,12 @@ import com.hbfintech.hound.core.support.Hound;
 import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.plugin.feign.HoundFeignRequestInterceptor;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.core.env.Environment;
 
 /**
  * @author frank
@@ -17,9 +19,16 @@ public class HoundAutoConfiguration
 {
     private Hound houndContext;
 
-    public HoundAutoConfiguration()
+    private Environment environment;
+
+    @Autowired
+    public HoundAutoConfiguration(Environment environment)
     {
+        this.environment = environment;
         this.houndContext = Sheepehound.getHound();
+
+
+
     }
 
     /**

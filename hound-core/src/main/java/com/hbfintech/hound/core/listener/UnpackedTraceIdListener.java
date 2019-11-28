@@ -1,13 +1,12 @@
 package com.hbfintech.hound.core.listener;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import com.hbfintech.hound.core.common.StringUtils;
 import com.hbfintech.hound.core.constant.TraceContextConstants;
 import com.hbfintech.hound.core.context.TraceContext;
 import com.hbfintech.hound.core.event.BaseHoundEvent;
 import com.hbfintech.hound.core.event.UnpackedEvent;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
-import org.springframework.util.StringUtils;
-
 import java.util.UUID;
 
 /**
