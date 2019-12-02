@@ -4,6 +4,7 @@ import com.hbfintech.hound.core.support.Hound;
 import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.plugin.feign.HoundFeignRequestInterceptor;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcFilter;
+import com.hbfintech.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -26,9 +27,15 @@ public class HoundAutoConfiguration
     {
         this.environment = environment;
         this.houndContext = Sheepehound.getHound();
+    }
 
-
-
+    /**
+     * RestTemplate
+     */
+    @Bean
+    public HoundRestTemplateInterceptor houndRestTemplateInterceptor()
+    {
+        return (HoundRestTemplateInterceptor) houndContext.getBridge("restTemplate");
     }
 
     /**

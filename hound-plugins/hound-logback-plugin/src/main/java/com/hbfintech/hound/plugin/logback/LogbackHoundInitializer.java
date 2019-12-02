@@ -78,10 +78,17 @@ public class LogbackHoundInitializer implements HoundEventListener
 
                 //TODO：动态配置
                 String pattern = patternLayoutEncoder.getPattern();
-                pattern = pattern + "|[%X{" +
-                        TraceContextConstants.TRACE_CONTEXT_HEAD + "}]";
 
-                patternLayoutEncoder.setPattern(pattern);
+                int lastIndex =  pattern.lastIndexOf("|");
+
+                String traceIdPattern = "[%X{" +
+                        TraceContextConstants.TRACE_CONTEXT_HEAD + "}]|";
+
+                StringBuilder sb = new StringBuilder(pattern);
+
+                sb.insert(lastIndex+1,traceIdPattern);
+
+                patternLayoutEncoder.setPattern(sb.toString());
                 patternLayoutEncoder.start();
             }
 

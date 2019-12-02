@@ -39,14 +39,14 @@ public abstract class BaseKvUnpacker implements Unpacker
                     traceContextThreadLocal.set(traceContext);
                 }
             }
+
+            hound.publishEvent(new UnpackedEvent(hound));
+
+            hound.publishEvent(new SortEvent(hound,hound::sort));
         }
         catch (Exception e)
         {
             //do nothing
         }
-
-        hound.publishEvent(new UnpackedEvent(hound));
-
-        hound.publishEvent(new SortEvent(hound,hound::sort));
     }
 }
