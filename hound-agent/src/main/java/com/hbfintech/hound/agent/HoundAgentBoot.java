@@ -3,6 +3,7 @@ package com.hbfintech.hound.agent;
 import com.alibaba.ttl.threadpool.agent.TtlAgent;
 import com.hbfintech.hound.agent.banner.BannerPrinter;
 import com.hbfintech.hound.agent.transformer.HoundHttpClientTransformer;
+import com.hbfintech.hound.agent.transformer.HoundRestTemplateTransformer;
 import com.hbfintech.hound.agent.transformer.HoundTransformer;
 import com.hbfintech.hound.agent.transformlet.HoundJavassistTransformlet;
 
@@ -20,6 +21,7 @@ public class HoundAgentBoot
         //加载hound agent
         final List<HoundJavassistTransformlet> transformletList = new ArrayList<>();
         transformletList.add(new HoundHttpClientTransformer());
+        transformletList.add(new HoundRestTemplateTransformer());
         inst.addTransformer(new HoundTransformer(transformletList));
     }
 
