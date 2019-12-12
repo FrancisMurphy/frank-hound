@@ -81,8 +81,8 @@ public class LogbackHoundInitializer implements HoundEventListener
 
                 int lastIndex =  pattern.lastIndexOf("|");
 
-                String traceIdPattern = "[%X{" +
-                        TraceContextConstants.TRACE_CONTEXT_HEAD + "}]|";
+                String traceIdPattern = "%X{" +
+                        TraceContextConstants.TRACE_CONTEXT_HEAD + "}|";
 
                 StringBuilder sb = new StringBuilder(pattern);
 

@@ -1,8 +1,11 @@
 package com.hbfintech.hound.plugin.spring.mvc;
 
 import com.hbfintech.hound.core.acceptor.unpacker.Unpacker;
+import com.hbfintech.hound.core.event.ResetTraceContextEvent;
+import com.hbfintech.hound.core.support.Hound;
 import com.hbfintech.hound.core.support.HoundAutowired;
 import com.hbfintech.hound.core.support.HoundBridge;
+import com.hbfintech.hound.core.support.Sheepehound;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -34,28 +37,44 @@ public class HoundWebMvcFilter implements Filter
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException
     {
-        if (!(request instanceof HttpServletRequest))
+        try
         {
-            return;
-        }
-
-        Map<String, String> targetHeaders = new HashMap<>();
-
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-
-        //获取上下文参数
-        Enumeration<String> headerNames = httpRequest.getHeaderNames();
-        if (headerNames != null)
-        {
-            while (headerNames.hasMoreElements())
+            if (!(request instanceof HttpServletRequest))
             {
-                final String headerName = headerNames.nextElement();
-                targetHeaders.put(headerName, httpRequest
-                        .getHeader(headerName));
+                return;
             }
+
+            Map<String, String> targetHeaders = new HashMap<>();
+
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+            //获取上下文参数
+            Enumeration<String> headerNames = httpRequest.getHeaderNames();
+            if (headerNames != null)
+            {
+                while (headerNames.hasMoreElements())
+                {
+                    final String headerName = headerNames.nextElement();
+                    targetHeaders.put(headerName, httpRequest
+                            .getHeader(headerName));
+                }
+            }
+            mvcUnpacker.unpack(targetHeaders);
+            chain.doFilter(request, response);
         }
-        mvcUnpacker.unpack(targetHeaders);
-        chain.doFilter(request, response);
+        finally
+        {
+            try
+            {
+                //Clean threadlocal event
+                Sheepehound.getHound().publishEvent(new ResetTraceContextEvent(Sheepehound.getHound()));
+            }
+            catch (Exception e)
+            {
+                //do nothing
+            }
+
+        }
     }
 
     /**

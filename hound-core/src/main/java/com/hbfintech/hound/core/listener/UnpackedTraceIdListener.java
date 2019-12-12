@@ -33,9 +33,7 @@ public class UnpackedTraceIdListener implements HoundEventListener
     private void initTraceId(
             TransmittableThreadLocal<TraceContext> traceContextThreadLocal)
     {
-        if(null == traceContextThreadLocal.get() || StringUtils
-                .isEmpty(traceContextThreadLocal.get().getContext(
-                        TraceContextConstants.TRACE_CONTEXT_HEAD)))
+        if(null == traceContextThreadLocal.get())
         {
             UUID uuid = UUID.randomUUID();
             String newTraceId = uuid.toString().replace("-", "");
@@ -43,6 +41,14 @@ public class UnpackedTraceIdListener implements HoundEventListener
             TraceContext traceContext = new TraceContext();
             traceContext.addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, newTraceId);
             traceContextThreadLocal.set(traceContext);
+        }
+        else if(StringUtils.isEmpty(traceContextThreadLocal.get().getContext(
+                        TraceContextConstants.TRACE_CONTEXT_HEAD)))
+        {
+            UUID uuid = UUID.randomUUID();
+            String newTraceId = uuid.toString().replace("-", "");
+
+            traceContextThreadLocal.get().addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, newTraceId);
         }
     }
 }
