@@ -12,16 +12,16 @@ import java.util.UUID;
 /**
  * @author frank
  */
-public class UnpackedTraceIdListener implements HoundEventListener
+public class UnpackedCommonListener implements HoundEventListener
 {
-    private TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
+    private TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
     @Override
     public void onEvent(BaseHoundEvent event)
     {
         if(event instanceof UnpackedEvent)
         {
-            initTraceId(traceContextThreadLocal);
+            initTraceContext(traceContextThreadLocal);
         }
     }
 
@@ -30,7 +30,7 @@ public class UnpackedTraceIdListener implements HoundEventListener
      * @param traceContextThreadLocal threadlocal
      * @return
      */
-    private void initTraceId(
+    private void initTraceContext(
             TransmittableThreadLocal<TraceContext> traceContextThreadLocal)
     {
         if(null == traceContextThreadLocal.get())

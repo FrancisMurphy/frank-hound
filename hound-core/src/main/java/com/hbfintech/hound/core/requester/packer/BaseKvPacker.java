@@ -16,7 +16,7 @@ public abstract class BaseKvPacker implements Packer
     {
         try
         {
-            TraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT
+            TraceContext traceContext = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT
                     .get();
 
             if (null == traceContext)

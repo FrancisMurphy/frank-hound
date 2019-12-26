@@ -11,7 +11,7 @@ import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
  */
 public class ResetTraceContextListener implements HoundEventListener
 {
-    private TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
+    private TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
     @Override
     public void onEvent(BaseHoundEvent event)

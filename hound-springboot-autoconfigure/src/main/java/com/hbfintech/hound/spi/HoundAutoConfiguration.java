@@ -5,6 +5,7 @@ import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.plugin.feign.HoundFeignRequestInterceptor;
 import com.hbfintech.hound.plugin.spring.mvc.HoundWebMvcFilter;
 import com.hbfintech.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.core.env.Environment;
 /**
  * @author frank
  */
+@Slf4j
 @Configuration
 public class HoundAutoConfiguration
 {
@@ -65,7 +67,7 @@ public class HoundAutoConfiguration
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            log.error("Injection houndWebMvcFilterFilterRegistrationBean error:",e);
             return null;
         }
     }

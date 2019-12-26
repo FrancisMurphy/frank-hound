@@ -9,12 +9,14 @@ import com.hbfintech.hound.core.support.Sheepehound;
 import com.hbfintech.hound.core.support.TraceContextAssistant;
 import com.hbfintech.hound.core.support.TraceContextThreadLocalKeeper;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
 /**
  * @author frank
  */
+@Slf4j
 public abstract class BaseKvUnpacker implements Unpacker
 {
     private Hound hound = Sheepehound.getHound();
@@ -24,7 +26,7 @@ public abstract class BaseKvUnpacker implements Unpacker
     {
         try
         {
-            TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
+            TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
             for (Map.Entry<String, String> unpackMaterial : unpackKvMapper
                     .entrySet())
@@ -46,7 +48,7 @@ public abstract class BaseKvUnpacker implements Unpacker
         }
         catch (Exception e)
         {
-            //do nothing
+            log.error("Hound BaseKvUnpacker error:",e);
         }
     }
 }

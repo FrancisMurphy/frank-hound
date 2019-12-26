@@ -17,7 +17,7 @@ public abstract class BaseSorter implements Sorter, Chain<Sorter>
 {
     private Sorter nextSorter;
 
-    private TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_TRACELOCAL_CONTEXT;
+    private TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
     public BaseSorter()
     {

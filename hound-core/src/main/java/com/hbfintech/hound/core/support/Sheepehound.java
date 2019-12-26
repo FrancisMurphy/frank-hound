@@ -29,16 +29,34 @@ public class Sheepehound implements Hound
 
     private HoundEventNotifier houndEventNotifier;
 
+    /**
+     * sheep bean registry
+     */
     private SheepRegistry sheepRegistry;
 
+    /**
+     * sorter bean registry
+     */
     private SorterRegistry sorterRegistry;
 
+    /**
+     * bridge bean registry
+     */
     private BridgeRegistry bridgeRegistry;
 
+    /**
+     * The autowirer for bridge bean
+     */
     private BridgeAutowirer bridgeAutowirer;
 
+    /**
+     * hound event listener registry
+     */
     private HoundEventListenerRegistry houndEventListenerRegistry;
 
+    /**
+     * the closer for hound
+     */
     private HoundAutoCloser autoCloser;
 
     private HoundConfigurableEnvironment houndEnvironment;
