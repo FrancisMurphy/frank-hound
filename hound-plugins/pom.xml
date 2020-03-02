@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hound-parent</artifactId>
-        <groupId>com.hbfintech</groupId>
+        <groupId>com.frank</groupId>
         <version>0.0.2-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hound-plugins</artifactId>
-    <name>hbfintech-hound-plugins</name>
+    <name>hound-plugins</name>
 
     <packaging>pom</packaging>
 

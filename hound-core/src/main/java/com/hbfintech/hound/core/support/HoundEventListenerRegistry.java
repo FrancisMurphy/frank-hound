@@ -38,7 +38,6 @@ public class HoundEventListenerRegistry implements Closeable
             catch (IllegalAccessException | InstantiationException e)
             {
                 //do nothing
-                return;
             }
         }
     }
