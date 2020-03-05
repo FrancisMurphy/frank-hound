@@ -1,0 +1,18 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+hound-agent/target/
+hound-core/target/
+hound-plugins/hound-apache-httpclient-plugin/target/
+hound-plugins/hound-feign-plugin/target/
+hound-plugins/hound-logback-plugin/target/
+hound-plugins/hound-spring-mvc-plugin/target/
+hound-plugins/hound-spring-resttemplate-plugin/target/
+hound-springboot-autoconfigure/target/
+hound-springboot-starter/target/
