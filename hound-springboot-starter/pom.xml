@@ -11,7 +11,7 @@
 
     <artifactId>hound-springboot-starter</artifactId>
 
-    <name>hbfintech-hound-springboot-starter</name>
+    <name>hound-springboot-starter</name>
 
     <dependencies>
 

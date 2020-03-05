@@ -11,7 +11,7 @@
 
     <artifactId>hound-springboot-autoconfigure</artifactId>
 
-    <name>hbfintech-hound-springboot-autoconfigure</name>
+    <name>hound-springboot-autoconfigure</name>
 
     <dependencies>
 
