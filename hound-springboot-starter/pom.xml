@@ -22,37 +22,37 @@
         </dependency>
 
         <dependency>
-            <groupId>com.hbfintech</groupId>
+            <groupId>com.frank</groupId>
             <artifactId>hound-springboot-autoconfigure</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.hbfintech</groupId>
+            <groupId>com.frank</groupId>
             <artifactId>hound-spring-mvc-plugin</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.hbfintech</groupId>
+            <groupId>com.frank</groupId>
             <artifactId>hound-apache-httpclient-plugin</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.hbfintech</groupId>
+            <groupId>com.frank</groupId>
             <artifactId>hound-feign-plugin</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.hbfintech</groupId>
+            <groupId>com.frank</groupId>
             <artifactId>hound-logback-plugin</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.hbfintech</groupId>
+            <groupId>com.frank</groupId>
             <artifactId>hound-spring-resttemplate-plugin</artifactId>
             <version>${project.version}</version>
         </dependency>

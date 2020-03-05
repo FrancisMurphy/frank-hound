@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.hbfintech.hound.spi.HoundAutoConfiguration
+com.frank.hound.spi.HoundAutoConfiguration

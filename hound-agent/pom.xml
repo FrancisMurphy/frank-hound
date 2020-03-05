@@ -39,7 +39,7 @@
                         <manifestEntries>
                             <Project-name>${project.name}</Project-name>
                             <Project-version>${project.version}</Project-version>
-                            <Premain-Class>com.hbfintech.hound.agent.HoundAgentBoot</Premain-Class>
+                            <Premain-Class>com.frank.hound.agent.HoundAgentBoot</Premain-Class>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                         </manifestEntries>
                     </archive>
