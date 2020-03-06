@@ -14,7 +14,7 @@ public class TraceContext
 {
     /**
      * The map that keep context param
-     * 1."trace_id" {@see com.hbfintech.trace.link.constant.TraceContextConstant}
+     * 1."trace_id" {@see com.frank.trace.link.constant.TraceContextConstant}
      */
     private Map<String,String> contextMap;
 

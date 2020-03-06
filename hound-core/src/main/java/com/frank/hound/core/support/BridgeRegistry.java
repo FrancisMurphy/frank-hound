@@ -24,7 +24,7 @@ public class BridgeRegistry implements Closeable {
     }
 
     private Map<String, Object> getTargetHoundBridge() {
-        return scanSpecifyPkgBridge("com.hbfintech.hound");
+        return scanSpecifyPkgBridge("com.frank.hound");
     }
 
     private Map<String, Object> scanSpecifyPkgBridge(@NonNull String pkgPrefix) {

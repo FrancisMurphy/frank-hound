@@ -12,8 +12,7 @@
     <name>hound-parent</name>
 
     <organization>
-        <name>华博金服</name>
-        <url>www.hbfintech.com</url>
+        <name>frank</name>
     </organization>
 
     <licenses>
@@ -34,7 +33,7 @@
         <developer>
             <id>frank</id>
             <name>朱明旭</name>
-            <email>zhu.mingxu@hbfintech.com</email>
+            <email>zhumingxu666@outlook.com</email>
         </developer>
     </developers>
 
@@ -45,16 +44,6 @@
         <module>hound-agent</module>
         <module>hound-plugins</module>
     </modules>
-
-    <scm>
-        <connection>
-            scm:git:http://10.46.178.188:8060/common/hbfintech-hound.git
-        </connection>
-        <developerConnection>
-            scm:git:http://10.46.178.188:8060/common/hbfintech-hound.git
-        </developerConnection>
-        <url>http://10.46.178.188:8060/common/hbfintech-hound.git</url>
-    </scm>
 
     <dependencyManagement>
     <dependencies>
@@ -126,11 +115,11 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-apache-tools-ant-module</artifactId>
-            <version>RELEASE112</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.netbeans.api</groupId>-->
+<!--            <artifactId>org-apache-tools-ant-module</artifactId>-->
+<!--            <version>RELEASE112</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.yaml</groupId>
@@ -143,18 +132,35 @@
 
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>Internal Release Repository</name>
-            <url>http://10.46.178.188:8081/nexus/content/repositories/releases/
-            </url>
+            <id>local-nexus-releases</id>
+            <url>http://221.229.114.106:18081/nexus/content/repositories/releases/</url>
         </repository>
+
         <snapshotRepository>
-            <id>snapshots</id>
-            <name>Internal Snapshot Repository</name>
-            <url>http://10.46.178.188:8081/nexus/content/repositories/snapshots/
-            </url>
+            <id>local-nexus-snapshots</id>
+            <url>http://221.229.114.106:18081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+
+    <repositories>
+        <repository>
+            <id>local-nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://221.229.114.106:18081/nexus/content/repositories/releases/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>local-nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://221.229.114.106:18081/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

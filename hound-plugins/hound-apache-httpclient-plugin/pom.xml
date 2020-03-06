@@ -11,7 +11,7 @@
 
     <artifactId>hound-apache-httpclient-plugin</artifactId>
 
-    <name>hbfintech-hound-apache-httpclient-plugin</name>
+    <name>hound-apache-httpclient-plugin</name>
 
     <dependencies>
         <dependency>

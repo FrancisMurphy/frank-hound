@@ -9,7 +9,7 @@ import java.util.Set;
 public abstract class BasePkgRegistry implements Refreshable
 {
 
-    protected static final String DEFAULT_BASE_PKG = "com.hbfintech.hound";
+    protected static final String DEFAULT_BASE_PKG = "com.frank.hound";
 
     protected Set<String> configBasePkg = new HashSet<>();
 

@@ -21,7 +21,7 @@ public class HoundBeanFactory
     public static <T> LinkedList<T> getAllChildInstanceByClass(@NonNull Class<T> clazz)
             throws IllegalAccessException, InstantiationException
     {
-        Reflections reflections = new Reflections("com.hbfintech.hound");
+        Reflections reflections = new Reflections("com.frank.hound");
         Set<Class<? extends T>> subTypes = reflections.getSubTypesOf(clazz);
 
         LinkedList<T> instanceList = new LinkedList<>();

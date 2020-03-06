@@ -28,7 +28,7 @@ public class HoundHttpClientTransformer implements HoundJavassistTransformlet
             CtMethod buildMethod = clazz
                     .getDeclaredMethod(HTTP_CLIENT_BUILDER_CLASS_NAME);
 
-            String code = "this.addInterceptorFirst(new com.hbfintech.hound.plugin.httpclient.HoundHttpClientPacker());";
+            String code = "this.addInterceptorFirst(new com.frank.hound.plugin.httpclient.HoundHttpClientPacker());";
             buildMethod.insertBefore(code);
 
         }

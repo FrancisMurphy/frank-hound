@@ -27,13 +27,13 @@ public class HoundRestTemplateTransformer implements HoundJavassistTransformlet
 
             String code = "boolean isHoundInterceptorInit = false;" +
                     "      for(org.springframework.http.client.ClientHttpRequestInterceptor restTemplateInterceptor : restTemplate.getInterceptors())" +
-                    "      {if(restTemplateInterceptor instanceof com.hbfintech.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor)" +
+                    "      {if(restTemplateInterceptor instanceof com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor)" +
                     "         {isHoundInterceptorInit = true;}}" +
                     "        if(!isHoundInterceptorInit){" +
-                    "            com.hbfintech.hound.core.support.Hound houndContext = com.hbfintech.hound.core.support.Sheepehound.getHound();" +
+                    "            com.frank.hound.core.support.Hound houndContext = com.frank.hound.core.support.Sheepehound.getHound();" +
                     "            if(houndContext!=null){" +
-                    "                com.hbfintech.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor houndRestTemplateInterceptor =" +
-                    "                        (com.hbfintech.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor) houndContext.getBridge(\"restTemplate\");" +
+                    "                com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor houndRestTemplateInterceptor =" +
+                    "                        (com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor) houndContext.getBridge(\"restTemplate\");" +
                     "                if(houndRestTemplateInterceptor!=null){" +
                     "                    restTemplate.getInterceptors().add(houndRestTemplateInterceptor);}}}";
             buildMethod.insertBefore(code);
