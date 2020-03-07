@@ -6,7 +6,7 @@ Hound(小猎犬)高兼容、无侵入理念设计的分布式业务链追踪插�
 系统功能上整体分为追踪信息收集、追踪信息分析，除追踪功能外附加的会提供平滑的TraceContext功能，即任何模块任何节点都可以获取同样的上下文，这将给业务实现带来便利，有效提高开发效率；
 ## 架构设计
 ### 整体设计
-Hound的追踪核心在于如何提供一个强大的追踪上下文系统结合现有的UI分析工具，来提供强大的追踪功能，整体追踪阶段分为三个部分：
+Hound的追踪核心在于如何提供一个强大的追踪上下文系统结合现有的UI分析工具，来提供强大的追踪功能，整体追踪阶段分为三个部分：  
 ![image.png](https://i.loli.net/2020/03/07/mNDGs9RW2oU4YSf.png)
 - Accepting Tracking  
 响应追踪
@@ -34,8 +34,12 @@ Hound的追踪核心在于如何提供一个强大的追踪上下文系统结合
 ![image.png](https://i.loli.net/2020/03/07/SAoBaG61k4VEwIp.png)
 ### 实现流程
 #### 响应追踪
+- Unpacker 拆箱员，负责将请求反序列化为TraceContext,供后续使用;
+- Sorter 分拣员，负责将TraceContext分发给订阅的模块使用，比如日志展示等;
 ![image.png](https://i.loli.net/2020/03/07/HhyUcM4RNv6ouSF.png)
 #### 过程追踪
+-Monitor 监视者，监视并提取关注监控的信息至TraceContext;
 ![image.png](https://i.loli.net/2020/03/07/6edZYOcB5xK4V3y.png)
 #### 请求追踪
+-Packer 装箱员，负责将TraceContext包装进行对外请求中;
 ![image.png](https://i.loli.net/2020/03/07/dAO9fYuFT4UERBy.png)
