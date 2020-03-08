@@ -1,5 +1,5 @@
 # Frank-Hound
-分布式请求链追踪框架
+分布式业务链追踪框架
 ## 简述
 Hound(小猎犬)高兼容、无侵入理念设计的分布式业务链追踪插件，相比于市面上主流的中心化追踪系统（如Pinpoint、Skywalking），特点是轻量、去中心化、接入简单、可拓展性强并且保有了不影响到原有业务代码的特点，功能上支持Spring MVC、Spring Boot等主流容器框架。
 ![](https://i.loli.net/2020/03/07/G7b6ukZBptXosnP.png)
