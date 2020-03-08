@@ -38,8 +38,8 @@ Hound的追踪核心在于如何提供一个强大的追踪上下文系统结合
 - Sorter 分拣员，负责将TraceContext分发给订阅的模块使用，比如日志展示等;
 ![image.png](https://i.loli.net/2020/03/07/HhyUcM4RNv6ouSF.png)
 #### 过程追踪
--Monitor 监视者，监视并提取关注监控的信息至TraceContext;
+- Monitor 监视者，监视并提取关注监控的信息至TraceContext;
 ![image.png](https://i.loli.net/2020/03/07/6edZYOcB5xK4V3y.png)
 #### 请求追踪
--Packer 装箱员，负责将TraceContext包装进行对外请求中;
+- Packer 装箱员，负责将TraceContext包装进行对外请求中;
 ![image.png](https://i.loli.net/2020/03/07/dAO9fYuFT4UERBy.png)
