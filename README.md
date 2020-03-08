@@ -31,7 +31,7 @@ Hound的追踪核心在于如何提供一个强大的追踪上下文系统结合
 - Trace:踪迹，对一次业务请求的整体业务链追踪周期
 - Span:跨度，一次业务请求在单个系统的追踪周期
 - Parent:父Span，用于描述调用依赖  
-![image.png](https://i.loli.net/2020/03/07/SAoBaG61k4VEwIp.png)
+![image.png](https://i.loli.net/2020/03/08/sFc37pOjkAfqZ5D.png)
 ### 实现流程
 #### 响应追踪
 - Unpacker 拆箱员，负责将请求反序列化为TraceContext,供后续使用;
