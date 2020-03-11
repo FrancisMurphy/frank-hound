@@ -71,8 +71,9 @@ public class Sheepehound implements Hound
 
     private Sheepehound()
     {
+        // TODO:待使用工厂模式返回
         nativeEnvironment = new HoundNativeEnvironment(new BaseHoundEnvironment());
-        sheepRegistry = new SheepRegistry(nativeEnvironment);
+        sheepRegistry = new SheepRegistry();
         sorterRegistry = new SorterRegistry();
         bridgeRegistry = new BridgeRegistry();
         bridgeAutowirer = new BridgeAutowirer();
@@ -88,7 +89,7 @@ public class Sheepehound implements Hound
             nativeEnvironment.refresh();
 
             //Init hound sheep
-            sheepRegistry.init();
+            sheepRegistry.init(nativeEnvironment);
             sorterRegistry.init();
             bridgeRegistry.init();
             bridgeAutowirer.init(bridgeRegistry);

@@ -6,33 +6,43 @@ import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * 管理包名的基础注册器
+ * @author frank
+ */
 public abstract class BasePkgRegistry implements Refreshable
 {
     /**
+     *  配置key
+     */
+    private final String configKey;
+
+    /**
      *  需要扫码的包名
      */
-    @Getter
-    private Set<String> basePkg = new HashSet<>();
+    private Set<String> pkgs = new HashSet<>();
 
-    private HoundEnvironment houndEnvironment;
-
-    public BasePkgRegistry(HoundEnvironment houndEnvironment) {
-        this.houndEnvironment = houndEnvironment;
+    protected BasePkgRegistry(String configKey) {
+        this.configKey = configKey;
     }
 
     @Override
-    public void refresh()
+    public void refresh(HoundEnvironment env)
     {
-        String configBasePkgProp = houndEnvironment.getActiveProperty(HoundConfigConstants.HOUND_PLUGIN_BASE_PKG);
+        String configBasePkgProp = env.getActiveProperty(HoundConfigConstants.HOUND_PLUGIN_BASE_PKG);
         if(StringUtils.isEmpty(configBasePkgProp))
         {
             return;
         }
         String[] configBasePkgPropArray = configBasePkgProp.split(",");
-        basePkg = new HashSet<>(Arrays.asList(configBasePkgPropArray));
+        pkgs = new HashSet<>(Arrays.asList(configBasePkgPropArray));
     }
 
+    public Iterator<String> getPkgs() {
+        return pkgs.iterator();
+    }
 
 }

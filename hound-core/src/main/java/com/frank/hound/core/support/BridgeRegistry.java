@@ -1,6 +1,9 @@
 package com.frank.hound.core.support;
 
+import com.frank.hound.core.common.BasePkgRegistry;
 import com.frank.hound.core.common.Closeable;
+import com.frank.hound.core.constant.HoundConfigConstants;
+import com.frank.hound.core.env.HoundEnvironment;
 import lombok.NonNull;
 import org.reflections.Reflections;
 
@@ -9,22 +12,37 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class BridgeRegistry implements Closeable {
+/**
+ * 桥接器管理器
+ * @author frank
+ */
+public class BridgeRegistry extends BasePkgRegistry implements Closeable {
     /**
      * hound bridge mapper {@link com.frank.hound.core.support.HoundBridge}
      */
     private Map<String, Object> bridgeMapper = new HashMap<>();
 
-    public void init() {
-        initBriage();
+    BridgeRegistry() {
+        super(HoundConfigConstants.HOUND_PLUGIN_BASE_PKG);
     }
 
-    private void initBriage() {
-        bridgeMapper = getTargetHoundBridge();
+    public void init(@NonNull HoundEnvironment env) {
+        //刷新配置
+        refresh(env);
+
+        this.bridgeMapper = getTargetHoundBridge();
     }
 
     private Map<String, Object> getTargetHoundBridge() {
-        return scanSpecifyPkgBridge("com.frank.hound");
+
+        Map<String, Object> targetBriageClazzMap = new HashMap<>(16);
+
+        Iterator<String> basePkgIterator = getPkgs();
+        while(basePkgIterator.hasNext()){
+            targetBriageClazzMap.putAll(scanSpecifyPkgBridge(basePkgIterator.next()));
+        }
+
+        return targetBriageClazzMap;
     }
 
     private Map<String, Object> scanSpecifyPkgBridge(@NonNull String pkgPrefix) {

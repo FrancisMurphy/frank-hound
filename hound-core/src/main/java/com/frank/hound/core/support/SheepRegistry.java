@@ -2,6 +2,7 @@ package com.frank.hound.core.support;
 
 import com.frank.hound.core.common.BasePkgRegistry;
 import com.frank.hound.core.common.Closeable;
+import com.frank.hound.core.constant.HoundConfigConstants;
 import com.frank.hound.core.env.HoundEnvironment;
 import lombok.Getter;
 import lombok.NonNull;
@@ -25,17 +26,17 @@ public class SheepRegistry extends BasePkgRegistry
      */
     private Map<Class, HoundSheepGroup> sheepMapper = new HashMap<>();
 
-    SheepRegistry(@NonNull HoundEnvironment houndEnvironment) {
-        super(houndEnvironment);
+    SheepRegistry() {
+        super(HoundConfigConstants.HOUND_PLUGIN_BASE_PKG);
     }
 
-    public void init()
+    public void init(@NonNull HoundEnvironment env)
     {
-        catchSheep();
+        catchSheep(env);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void catchSheep()
+    private void catchSheep(@NonNull HoundEnvironment env)
     {
         //初始化componentsMapper
         for(Class sheepClazz: HoundClazzLibrary.VALID_HOUND_SHEEP_CLAZZES)
@@ -44,7 +45,7 @@ public class SheepRegistry extends BasePkgRegistry
         }
 
         //刷新配置
-        refresh();
+        refresh(env);
 
         Map<Class<?>, HoundSheep> targetSheepClazzMap = getTargetHoundSheep();
 
@@ -54,17 +55,11 @@ public class SheepRegistry extends BasePkgRegistry
 
     private Map<Class<?>, HoundSheep> getTargetHoundSheep()
     {
-        //根据配置的包名扫描sheep bean
-        Set<String> basePkgs = getBasePkg();
-
         Map<Class<?>, HoundSheep> targetSheepClazzMap = new HashMap<>(16);
 
-        if(basePkgs.isEmpty()) {
-            return targetSheepClazzMap;
-        }
-
-        for (String pkg : basePkgs) {
-            targetSheepClazzMap.putAll(scanSpecifyPkgComponent(pkg));
+        Iterator<String> basePkgIterator = getPkgs();
+        while(basePkgIterator.hasNext()){
+            targetSheepClazzMap.putAll(scanSpecifyPkgComponent(basePkgIterator.next()));
         }
 
         return targetSheepClazzMap;
@@ -97,7 +92,7 @@ public class SheepRegistry extends BasePkgRegistry
 
     /**
      * 实例话组件
-     * @param targetSheepClazzEntrySet
+     * @param targetSheepClazzEntrySet sheepClazz实体集合
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private void parseSheepGroup(@NonNull Set<Map.Entry<Class<?>, HoundSheep>> targetSheepClazzEntrySet)
