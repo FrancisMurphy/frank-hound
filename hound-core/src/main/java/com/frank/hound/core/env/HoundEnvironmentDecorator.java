@@ -4,11 +4,11 @@ package com.frank.hound.core.env;
  * The decorator for {@link HoundConfigurableEnvironment}
  * @author frank
  */
-public class HoundConfigEnvDecorator implements HoundConfigurableEnvironment
+public abstract class HoundEnvironmentDecorator implements HoundConfigurableEnvironment
 {
     private HoundConfigurableEnvironment houndEnv;
 
-    public HoundConfigEnvDecorator(
+    public HoundEnvironmentDecorator(
             HoundConfigurableEnvironment houndEnv)
     {
         this.houndEnv = houndEnv;
@@ -21,9 +21,9 @@ public class HoundConfigEnvDecorator implements HoundConfigurableEnvironment
     }
 
     @Override
-    public void setDefalutProperty(String propertyKey, String defaultValue)
+    public void setDefaultProperty(String propertyKey, String defaultValue)
     {
-        houndEnv.setDefalutProperty(propertyKey,defaultValue);
+        houndEnv.setDefaultProperty(propertyKey,defaultValue);
     }
 
     @Override

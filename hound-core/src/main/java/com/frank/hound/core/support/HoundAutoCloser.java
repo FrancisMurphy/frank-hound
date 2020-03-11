@@ -3,6 +3,7 @@ package com.frank.hound.core.support;
 import com.frank.hound.core.common.Closeable;
 import lombok.NonNull;
 
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -20,10 +21,7 @@ public class HoundAutoCloser
             return;
         }
 
-        for(Closeable close:closers)
-        {
-            closerList.add(close);
-        }
+        closerList.addAll(Arrays.asList(closers));
     }
 
     public void exec()

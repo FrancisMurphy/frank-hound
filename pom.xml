@@ -7,7 +7,7 @@
     <groupId>com.frank</groupId>
     <artifactId>hound-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.2-RELEASE</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <name>hound-parent</name>
 
@@ -25,15 +25,15 @@
 
     <developers>
         <developer>
-            <id>kaylves</id>
-            <name>王单凯</name>
-            <email>wang.shankai@hbfintech.com</email>
-        </developer>
-
-        <developer>
             <id>frank</id>
             <name>朱明旭</name>
             <email>zhumingxu666@outlook.com</email>
+        </developer>
+
+        <developer>
+            <id>kaylves</id>
+            <name>王单凯</name>
+            <email>wang.shankai@hbfintech.com</email>
         </developer>
     </developers>
 

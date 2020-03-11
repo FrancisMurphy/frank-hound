@@ -17,8 +17,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Slf4j
 public class BaseHoundEnvironment implements HoundConfigurableEnvironment
 {
-    private static final String DEFAULT_ENV_CONFIG_FILE_PATH = "/HOUND-INF/hound.properties";
-
     private Map<String,String> activeProperties = new ConcurrentHashMap<>();
 
     private Map<String,String> properties = new ConcurrentHashMap<>();
@@ -38,7 +36,7 @@ public class BaseHoundEnvironment implements HoundConfigurableEnvironment
     }
 
     @Override
-    public void setDefalutProperty(@NonNull String propertyKey,@NonNull String defaultValue)
+    public void setDefaultProperty(@NonNull String propertyKey,@NonNull String defaultValue)
     {
         defalutProperties.put(propertyKey,defaultValue);
     }
@@ -46,17 +44,6 @@ public class BaseHoundEnvironment implements HoundConfigurableEnvironment
     @Override
     public void refresh()
     {
-        //Initial read configuration file
-        if(!isInitialized.get())
-        {
-            if (initDefaultConfig())
-            {
-                return;
-            }
-
-            isInitialized.set(true);
-        }
-
         //Refresh properties
         activeProperties.putAll(defalutProperties);
         activeProperties.putAll(properties);
@@ -73,30 +60,6 @@ public class BaseHoundEnvironment implements HoundConfigurableEnvironment
     public String getActiveProperty(@NonNull String propertyKey)
     {
         return activeProperties.get(propertyKey);
-    }
-
-    private boolean initDefaultConfig()
-    {
-        Properties properties = new Properties();
-        InputStream reader = getClass().getResourceAsStream(DEFAULT_ENV_CONFIG_FILE_PATH);
-        try
-        {
-            properties.load(reader);
-        }
-        catch (IOException e)
-        {
-            //do nothing
-            log.error("Hound env load properties fail, error:",e);
-            return true;
-        }
-
-        Set<String> innerPropertyKeysSet = properties.stringPropertyNames();
-
-        for(String innerPropertyKey:innerPropertyKeysSet)
-        {
-            defalutProperties.put(innerPropertyKey,properties.getProperty(innerPropertyKey));
-        }
-        return false;
     }
 
 }

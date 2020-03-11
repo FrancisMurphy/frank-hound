@@ -17,10 +17,9 @@ public interface HoundConfigurableEnvironment extends HoundEnvironment
      * @param propertyKey
      * @param defaultValue
      */
-    void setDefalutProperty(String propertyKey,String defaultValue);
+    void setDefaultProperty(String propertyKey,String defaultValue);
 
     /**
-     *
      * Refresh environment of hound
      */
     void refresh();

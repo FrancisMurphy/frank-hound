@@ -1,11 +1,12 @@
 package com.frank.hound.core.support;
 
+import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.frank.hound.core.common.AsyncSimpleFuncThread;
 import com.frank.hound.core.env.BaseHoundEnvironment;
 import com.frank.hound.core.env.HoundConfigurableEnvironment;
 import com.frank.hound.core.env.HoundEnvironment;
-import com.frank.hound.core.env.HoundValidKeyEnvironment;
+import com.frank.hound.core.env.HoundNativeEnvironment;
 import com.frank.hound.core.event.HoundInitializedEvent;
 import lombok.NonNull;
 import org.slf4j.LoggerFactory;
@@ -59,11 +60,19 @@ public class Sheepehound implements Hound
      */
     private HoundAutoCloser autoCloser;
 
-    private HoundConfigurableEnvironment houndEnvironment;
+    /**
+     * hound native environment
+     */
+    private HoundConfigurableEnvironment houndNativeEnvironment;
+
+    /**
+     * hound common environment
+     */
+    private HoundConfigurableEnvironment houndCommonEnvironment;
 
     private Sheepehound()
     {
-        houndEnvironment = new HoundValidKeyEnvironment(new BaseHoundEnvironment());
+        houndNativeEnvironment = new HoundNativeEnvironment(new BaseHoundEnvironment());
         sheepRegistry = new SheepRegistry();
         sorterRegistry = new SorterRegistry();
         bridgeRegistry = new BridgeRegistry();
@@ -75,26 +84,33 @@ public class Sheepehound implements Hound
 
     private void init()
     {
-        //Init hound environment
-//        houndEnvironment.refresh();
+        try{
+            //Init hound environment
+            houndNativeEnvironment.refresh();
 
-        //Init hound sheep
-        sheepRegistry.init();
-        sorterRegistry.init();
-        bridgeRegistry.init();
-        bridgeAutowirer.init(bridgeRegistry);
-        houndEventListenerRegistry.init();
+            //Init hound sheep
+            sheepRegistry.init();
+            sorterRegistry.init();
+            bridgeRegistry.init();
+            bridgeAutowirer.init(bridgeRegistry);
+            houndEventListenerRegistry.init();
 
-        //Publish initialized event
-        publishEvent(new HoundInitializedEvent(this));
+            //Publish initialized event
+            publishEvent(new HoundInitializedEvent(this));
 
-        //Register closer which can release related resources at the end of the process automatically
-        autoCloser.registerAutoCloser(sheepRegistry, sorterRegistry,
+            //Register closer which can release related resources at the end of the process automatically
+            autoCloser.registerAutoCloser(sheepRegistry, sorterRegistry,
                 bridgeRegistry, houndEventListenerRegistry);
 
-        //Register close hook func
-        Runtime.getRuntime()
+            //Register close hook func
+            Runtime.getRuntime()
                 .addShutdownHook(new AsyncSimpleFuncThread(this::close));
+        }catch (HoundException e){
+            //print log, finish init...
+            loggerContext.getLogger(getClass()).error("Init hound fail, error:",e);
+            //exec hook
+            new AsyncSimpleFuncThread(this::close).run();
+        }
     }
 
     @Override
@@ -131,7 +147,7 @@ public class Sheepehound implements Hound
     @Override
     public HoundEnvironment getEnvironment()
     {
-        return houndEnvironment;
+        return houndNativeEnvironment;
     }
 
     public static synchronized Hound getHound()
