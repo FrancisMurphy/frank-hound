@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="Spring" name="Spring">
-      <configuration />
-    </facet>
-  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -17,114 +12,20 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="hound-core" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-openfeign:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.0.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.0.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.0.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-to-slf4j:2.10.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.10.0" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:jul-to-slf4j:1.7.25" level="project" />
-    <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.3.2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.yaml:snakeyaml:1.19" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-context:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-rsa:1.0.7.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.60" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.60" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-openfeign-core:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.0.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-netflix-ribbon:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-netflix-archaius:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.0.6.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.13" level="project" />
-    <orderEntry type="library" name="Maven: io.github.openfeign.form:feign-form-spring:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: io.github.openfeign.form:feign-form:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.3.3" level="project" />
-    <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.0.10.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-commons:2.0.2.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.0.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: io.github.openfeign:feign-core:9.7.0" level="project" />
-    <orderEntry type="library" name="Maven: io.github.openfeign:feign-slf4j:9.7.0" level="project" />
-    <orderEntry type="library" name="Maven: io.github.openfeign:feign-hystrix:9.7.0" level="project" />
-    <orderEntry type="library" name="Maven: com.netflix.archaius:archaius-core:0.6.6" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.findbugs:annotations:2.0.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: commons-configuration:commons-configuration:1.8" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: commons-lang:commons-lang:2.6" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.3" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.3" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.4.3" level="project" />
-    <orderEntry type="library" name="Maven: com.netflix.hystrix:hystrix-core:1.4.26" level="project" />
-    <orderEntry type="library" name="Maven: io.reactivex:rxjava:1.1.1" level="project" />
-    <orderEntry type="library" name="Maven: io.github.openfeign:feign-java8:9.7.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.1.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.28" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:transmittable-thread-local:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.11" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.24.1-GA" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.11" level="project" />
-    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-apache-tools-ant-module:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-annotations-common:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-progress:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-progress-nb:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-xml:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-editor-document:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-editor-util:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-xml-ui:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-core-multiview:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-editor-mimelookup:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-options-api:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.modules:org-netbeans-core:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.modules:org-netbeans-bootstrap:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.api:org-netbeans-modules-keyring:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.api:org-netbeans-modules-sampler:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.api:org-netbeans-swing-plaf:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.modules:org-netbeans-core-startup:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.api:org-netbeans-libs-asm:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.ow2.asm:asm-all:5.0.1" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.modules:org-netbeans-core-startup-base:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-spi-quicksearch:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-swing-outline:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.modules:org-netbeans-modules-options-java:RELEASE112" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.netbeans.modules:org-netbeans-modules-project-indexingbridge:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-projectapi:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-projectuiapi:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-templates:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-projectuiapi-base:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-modules-queries:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-spi-navigator:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-actions:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-awt:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-dialogs:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-execution:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-explorer:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-swing-tabcontrol:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-filesystems:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-filesystems-nb:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-io:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-intent:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-io:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-loaders:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-netbeans-api-scripting:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-modules:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-nodes:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-text:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-util-ui:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-util:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-util-lookup:RELEASE112" level="project" />
-    <orderEntry type="library" name="Maven: org.netbeans.api:org-openide-windows:RELEASE112" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:28.1-jre" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:failureaccess:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.checkerframework:checker-qual:2.8.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.j2objc:j2objc-annotations:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.18" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
   </component>
 </module>

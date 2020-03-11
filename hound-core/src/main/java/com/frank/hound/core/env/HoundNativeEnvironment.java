@@ -20,17 +20,7 @@ public class HoundNativeEnvironment extends HoundEnvironmentDecorator {
      */
     private static final String DEFAULT_ENV_CONFIG_FILE_PATH = "/HOUND-INF/hound.properties";
 
-    /**
-     * Hound-Plugin 自身加载包名路径
-     */
-    private static final String HOUND_PLUGIN_BASE_PKG = "hound.plugin.base.pkg";
-
-    /**
-     * Hound-Plugin 外部插件包路径
-     */
-    private static final String HOUND_PLUGIN_EXTERNAL_PKG = "hound.plugin.external.pkg";
-
-    private AtomicBoolean isInitialized = new AtomicBoolean(false);
+    private volatile AtomicBoolean isInitialized = new AtomicBoolean(false);
 
     public HoundNativeEnvironment(HoundConfigurableEnvironment houndEnv) {
         super(houndEnv);
@@ -45,21 +35,8 @@ public class HoundNativeEnvironment extends HoundEnvironmentDecorator {
             // 读取原生配置
             init();
 
-//            //检查是否缺少配置
-//            check();
-
             isInitialized.set(true);
         }
-    }
-
-    @Override
-    public void setDefaultProperty(String propertyKey, String defaultValue) {
-        super.setDefaultProperty(propertyKey, defaultValue);
-    }
-
-    @Override
-    public void setProperty(String propertyKey, String propertyValue) {
-        super.setProperty(propertyKey, propertyValue);
     }
 
     /**

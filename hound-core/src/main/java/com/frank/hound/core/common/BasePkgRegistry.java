@@ -1,6 +1,8 @@
 package com.frank.hound.core.common;
 
+import com.frank.hound.core.constant.HoundConfigConstants;
 import com.frank.hound.core.env.HoundEnvironment;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,22 +10,29 @@ import java.util.Set;
 
 public abstract class BasePkgRegistry implements Refreshable
 {
+    /**
+     *  需要扫码的包名
+     */
+    @Getter
+    private Set<String> basePkg = new HashSet<>();
 
-    protected static final String DEFAULT_BASE_PKG = "com.frank.hound";
+    private HoundEnvironment houndEnvironment;
 
-    protected Set<String> configBasePkg = new HashSet<>();
-
-    private static final String BASE_PKG_PROP_KEY = "hound.base.pkg";
+    public BasePkgRegistry(HoundEnvironment houndEnvironment) {
+        this.houndEnvironment = houndEnvironment;
+    }
 
     @Override
-    public void refresh(HoundEnvironment houndEnvironment)
+    public void refresh()
     {
-        String configBasePkgProp = houndEnvironment.getActiveProperty(BASE_PKG_PROP_KEY);
+        String configBasePkgProp = houndEnvironment.getActiveProperty(HoundConfigConstants.HOUND_PLUGIN_BASE_PKG);
         if(StringUtils.isEmpty(configBasePkgProp))
         {
             return;
         }
         String[] configBasePkgPropArray = configBasePkgProp.split(",");
-        configBasePkg = new HashSet<>(Arrays.asList(configBasePkgPropArray));
+        basePkg = new HashSet<>(Arrays.asList(configBasePkgPropArray));
     }
+
+
 }

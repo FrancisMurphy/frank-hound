@@ -19,23 +19,22 @@ import java.util.*;
 public class SheepRegistry extends BasePkgRegistry
         implements Closeable
 {
-
     /**
      * hound组件mapper
      * {@link HoundSheep}
      */
     private Map<Class, HoundSheepGroup> sheepMapper = new HashMap<>();
 
-    public SheepRegistry()
-    {
+    SheepRegistry(@NonNull HoundEnvironment houndEnvironment) {
+        super(houndEnvironment);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void init()
     {
         catchSheep();
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private void catchSheep()
     {
         //初始化componentsMapper
@@ -43,6 +42,9 @@ public class SheepRegistry extends BasePkgRegistry
         {
             sheepMapper.put(sheepClazz,new HoundSheepGroup(sheepClazz));
         }
+
+        //刷新配置
+        refresh();
 
         Map<Class<?>, HoundSheep> targetSheepClazzMap = getTargetHoundSheep();
 
@@ -52,10 +54,18 @@ public class SheepRegistry extends BasePkgRegistry
 
     private Map<Class<?>, HoundSheep> getTargetHoundSheep()
     {
-        Map<Class<?>, HoundSheep> targetSheepClazzMap = scanSpecifyPkgComponent(
-                DEFAULT_BASE_PKG);
+        //根据配置的包名扫描sheep bean
+        Set<String> basePkgs = getBasePkg();
 
-        //TODO:后续支持通过配置，扫描其他包名下的hound拓展插件
+        Map<Class<?>, HoundSheep> targetSheepClazzMap = new HashMap<>(16);
+
+        if(basePkgs.isEmpty()) {
+            return targetSheepClazzMap;
+        }
+
+        for (String pkg : basePkgs) {
+            targetSheepClazzMap.putAll(scanSpecifyPkgComponent(pkg));
+        }
 
         return targetSheepClazzMap;
     }
@@ -116,7 +126,7 @@ public class SheepRegistry extends BasePkgRegistry
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public <T> HoundSheepGroup<T> getSheepGroup(@NonNull Class<T> clazz)
+    <T> HoundSheepGroup<T> getSheepGroup(@NonNull Class<T> clazz)
     {
         return sheepMapper.get(clazz);
     }
@@ -125,12 +135,6 @@ public class SheepRegistry extends BasePkgRegistry
     public void close()
     {
         sheepMapper.clear();
-    }
-
-    @Override
-    public void refresh(HoundEnvironment houndEnvironment)
-    {
-//        String configBasePkg
     }
 
     /**
@@ -144,12 +148,12 @@ public class SheepRegistry extends BasePkgRegistry
 
         private Map<String,T> sheepInstanceMapper = new HashMap<>();
 
-        public HoundSheepGroup(@NonNull Class<T> sheepClazz)
+        HoundSheepGroup(@NonNull Class<T> sheepClazz)
         {
             this.sheepClazz = sheepClazz;
         }
 
-        public void add(@NonNull String sheepName, @NonNull T sheepInstance)
+        void add(@NonNull String sheepName, @NonNull T sheepInstance)
         {
             sheepInstanceMapper.put(sheepName,sheepInstance);
         }

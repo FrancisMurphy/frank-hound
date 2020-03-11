@@ -1,6 +1,5 @@
 package com.frank.hound.core.support;
 
-import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import com.frank.hound.core.common.AsyncSimpleFuncThread;
 import com.frank.hound.core.env.BaseHoundEnvironment;
@@ -63,17 +62,17 @@ public class Sheepehound implements Hound
     /**
      * hound native environment
      */
-    private HoundConfigurableEnvironment houndNativeEnvironment;
+    private HoundConfigurableEnvironment nativeEnvironment;
 
     /**
-     * hound common environment
+     * hound external environment
      */
-    private HoundConfigurableEnvironment houndCommonEnvironment;
+//    private HoundConfigurableEnvironment externalEnvironment;
 
     private Sheepehound()
     {
-        houndNativeEnvironment = new HoundNativeEnvironment(new BaseHoundEnvironment());
-        sheepRegistry = new SheepRegistry();
+        nativeEnvironment = new HoundNativeEnvironment(new BaseHoundEnvironment());
+        sheepRegistry = new SheepRegistry(nativeEnvironment);
         sorterRegistry = new SorterRegistry();
         bridgeRegistry = new BridgeRegistry();
         bridgeAutowirer = new BridgeAutowirer();
@@ -85,8 +84,8 @@ public class Sheepehound implements Hound
     private void init()
     {
         try{
-            //Init hound environment
-            houndNativeEnvironment.refresh();
+            //Init  native environment
+            nativeEnvironment.refresh();
 
             //Init hound sheep
             sheepRegistry.init();
@@ -147,7 +146,7 @@ public class Sheepehound implements Hound
     @Override
     public HoundEnvironment getEnvironment()
     {
-        return houndNativeEnvironment;
+        return nativeEnvironment;
     }
 
     public static synchronized Hound getHound()
