@@ -1,6 +1,9 @@
 package com.frank.hound.plugin.spring.mvc;
 
 import com.frank.hound.core.acceptor.unpacker.Unpacker;
+import com.frank.hound.core.codec.protocol.ProtocolComposition;
+import com.frank.hound.core.codec.protocol.http.HttpCompositionEnum;
+import com.frank.hound.core.codec.protocol.http.HttpProtocolDescribe;
 import com.frank.hound.core.event.ResetTraceContextEvent;
 import com.frank.hound.core.support.HoundAutowired;
 import com.frank.hound.core.support.HoundBridge;
@@ -10,8 +13,6 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 @HoundBridge(HoundWebMvcConstants.HOUND_WEB_MVC_NAME)
 public class HoundWebMvcFilter implements Filter
@@ -43,22 +44,41 @@ public class HoundWebMvcFilter implements Filter
                 return;
             }
 
-            Map<String, String> targetHeaders = new HashMap<>();
-
             HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-            //获取上下文参数
+            //获取头部参数
+            ProtocolComposition protocolComposition = new ProtocolComposition(HttpCompositionEnum.HEADER.getName());
             Enumeration<String> headerNames = httpRequest.getHeaderNames();
             if (headerNames != null)
             {
                 while (headerNames.hasMoreElements())
                 {
                     final String headerName = headerNames.nextElement();
-                    targetHeaders.put(headerName, httpRequest
-                            .getHeader(headerName));
+                    protocolComposition.addElement(headerName,httpRequest
+                        .getHeader(headerName));
                 }
             }
-            mvcUnpacker.unpack(targetHeaders);
+
+
+
+            //获取body中的元素
+//            Enumeration<String> bodyElement = httpRequest.getHeaderNames();
+//            if (headerNames != null)
+//            {
+//                while (headerNames.hasMoreElements())
+//                {
+//                    final String headerName = headerNames.nextElement();
+//                    targetHeaders.put(headerName, httpRequest
+//                        .getHeader(headerName));
+//                }
+//            }
+//
+//            HttpProtocolDescribe httpProtocolDescribe = new HttpProtocolDescribe();
+//            httpProtocolDescribe
+
+
+
+//            mvcUnpacker.unpack(targetHeaders);
             chain.doFilter(request, response);
         }
         finally

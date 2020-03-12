@@ -22,20 +22,20 @@ public abstract class BaseKvUnpacker implements Unpacker
     private Hound hound = Sheepehound.getHound();
 
     @Override
-    public void unpack(@NonNull Map<String, String> unpackKvMapper)
+    public void unpack(@NonNull Map<String, Object> unpackKvMapper)
     {
         try
         {
             TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
-            for (Map.Entry<String, String> unpackMaterial : unpackKvMapper
+            for (Map.Entry<String, Object> unpackMaterial : unpackKvMapper
                     .entrySet())
             {
                 final String k = unpackMaterial.getKey();
                 final String v = unpackMaterial.getValue();
                 if (TraceContextAssistant.isTraceKeyContain(k))
                 {
-                    //放入线程上下文
+                    //放入TraceContext
                     TraceContext traceContext = new TraceContext();
                     traceContext.addContext(k, v);
                     traceContextThreadLocal.set(traceContext);
