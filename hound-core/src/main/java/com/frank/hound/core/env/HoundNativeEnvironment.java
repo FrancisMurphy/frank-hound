@@ -28,7 +28,6 @@ public class HoundNativeEnvironment extends HoundEnvironmentDecorator {
 
     @Override
     public void refresh() {
-        super.refresh();
 
         // 初始化原生配置信息
         if (!isInitialized.get()) {
@@ -37,6 +36,8 @@ public class HoundNativeEnvironment extends HoundEnvironmentDecorator {
 
             isInitialized.set(true);
         }
+
+        super.refresh();
     }
 
     /**

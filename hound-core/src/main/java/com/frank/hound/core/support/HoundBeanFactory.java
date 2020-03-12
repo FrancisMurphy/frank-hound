@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Set;
 
 /**
- * Hound instance 工厂，用于扫描
+ * Hound instance 工厂，目前只关注hound包
  * @author frank
  */
 public class HoundBeanFactory
@@ -21,6 +21,7 @@ public class HoundBeanFactory
     public static <T> LinkedList<T> getAllChildInstanceByClass(@NonNull Class<T> clazz)
             throws IllegalAccessException, InstantiationException
     {
+        //TODO:目前暂时只扫描hound包路径
         Reflections reflections = new Reflections("com.frank.hound");
         Set<Class<? extends T>> subTypes = reflections.getSubTypesOf(clazz);
 

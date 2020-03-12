@@ -91,7 +91,7 @@ public class Sheepehound implements Hound
             //Init hound sheep
             sheepRegistry.init(nativeEnvironment);
             sorterRegistry.init();
-            bridgeRegistry.init();
+            bridgeRegistry.init(nativeEnvironment);
             bridgeAutowirer.init(bridgeRegistry);
             houndEventListenerRegistry.init();
 

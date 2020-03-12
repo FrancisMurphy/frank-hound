@@ -15,7 +15,7 @@ public class BridgeAutowirer {
     public void init(@NonNull BridgeRegistry houndBridgeRegistry) {
         // Traversing bridge
         if (houndBridgeRegistry == null) {
-            throw new HoundException("Can not find houndBridgeRegistry! Hound init fail!");
+            throw new HoundInitException(getClass(),"Can not find houndBridgeRegistry! Hound init fail!");
         }
 
         Iterator<Map.Entry<String, Object>> bridgeIterator = houndBridgeRegistry.getBridges();
