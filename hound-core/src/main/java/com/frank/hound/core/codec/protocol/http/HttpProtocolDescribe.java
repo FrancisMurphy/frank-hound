@@ -1,14 +1,14 @@
 package com.frank.hound.core.codec.protocol.http;
 
-import com.frank.hound.core.codec.protocol.ProtocolComposition;
+import com.frank.hound.core.codec.protocol.OriginalContent;
+import com.frank.hound.core.codec.protocol.ParsedContent;
 import com.frank.hound.core.codec.protocol.ProtocolDescribable;
 import com.frank.hound.core.codec.serialize.SerializeNotationEnum;
 import lombok.AllArgsConstructor;
 
-import java.util.List;
-
 /**
  * Http协议描述
+ *
  * @author frank
  */
 @AllArgsConstructor
@@ -16,7 +16,9 @@ public class HttpProtocolDescribe implements ProtocolDescribable {
 
     private SerializeNotationEnum serializeNotation;
 
-    private List<ProtocolComposition> protocolCompositions;
+    private ParsedContent parsedContent;
+
+    private OriginalContent originalContent;
 
     @Override
     public SerializeNotationEnum getSerializeNotation() {
@@ -24,7 +26,12 @@ public class HttpProtocolDescribe implements ProtocolDescribable {
     }
 
     @Override
-    public List<ProtocolComposition> getProtocolComposition() {
-        return protocolCompositions;
+    public ParsedContent getParsedContent() {
+        return parsedContent;
+    }
+
+    @Override
+    public OriginalContent getOriginalContext() {
+        return originalContent;
     }
 }

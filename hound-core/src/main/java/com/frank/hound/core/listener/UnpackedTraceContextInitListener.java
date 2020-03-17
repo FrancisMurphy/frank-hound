@@ -2,7 +2,9 @@ package com.frank.hound.core.listener;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.frank.hound.core.common.StringUtils;
+import com.frank.hound.core.constant.ContextElementType;
 import com.frank.hound.core.constant.TraceContextConstants;
+import com.frank.hound.core.context.ContextElement;
 import com.frank.hound.core.context.TraceContext;
 import com.frank.hound.core.event.BaseHoundEvent;
 import com.frank.hound.core.event.UnpackedEvent;
@@ -39,14 +41,15 @@ public class UnpackedTraceContextInitListener implements HoundEventListener {
             String newTraceId = uuid.toString().replace("-", "");
 
             TraceContext traceContext = new TraceContext();
-            traceContext.addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, newTraceId);
+            traceContext.addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, new ContextElement<>(ContextElementType.CORE_CONTEXT,newTraceId,String.class));
+
             traceContextThreadLocal.set(traceContext);
         } else if (StringUtils
             .isEmpty(traceContextThreadLocal.get().getContext(TraceContextConstants.TRACE_CONTEXT_HEAD))) {
             UUID uuid = UUID.randomUUID();
             String newTraceId = uuid.toString().replace("-", "");
 
-            traceContextThreadLocal.get().addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, newTraceId);
+            traceContextThreadLocal.get().addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, new ContextElement<>(ContextElementType.CORE_CONTEXT,newTraceId,String.class));
         }
     }
 }

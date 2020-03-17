@@ -1,6 +1,8 @@
 package com.frank.hound.core.acceptor.unpacker;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import com.frank.hound.core.codec.protocol.ProtocolDescribable;
+import com.frank.hound.core.context.ContextElement;
 import com.frank.hound.core.context.TraceContext;
 import com.frank.hound.core.event.SortEvent;
 import com.frank.hound.core.event.UnpackedEvent;
@@ -22,17 +24,18 @@ public abstract class BaseKvUnpacker implements Unpacker
     private Hound hound = Sheepehound.getHound();
 
     @Override
-    public void unpack(@NonNull Map<String, Object> unpackKvMapper)
+    public void unpack(@NonNull ProtocolDescribable unpackParam)
     {
         try
         {
             TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
-            for (Map.Entry<String, Object> unpackMaterial : unpackKvMapper
+            //处理核心上下文
+            for (Map.Entry<String, ContextElement<?>> unpackMaterial : unpackParam.getParsedContent().getElements()
                     .entrySet())
             {
                 final String k = unpackMaterial.getKey();
-                final String v = unpackMaterial.getValue();
+                final ContextElement<?> v = unpackMaterial.getValue();
                 if (TraceContextAssistant.isTraceKeyContain(k))
                 {
                     //放入TraceContext

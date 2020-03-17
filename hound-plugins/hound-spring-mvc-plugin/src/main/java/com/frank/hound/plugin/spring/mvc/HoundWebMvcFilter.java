@@ -1,9 +1,10 @@
 package com.frank.hound.plugin.spring.mvc;
 
 import com.frank.hound.core.acceptor.unpacker.Unpacker;
-import com.frank.hound.core.codec.protocol.ProtocolComposition;
+import com.frank.hound.core.codec.protocol.ParsedContent;
 import com.frank.hound.core.codec.protocol.http.HttpCompositionEnum;
-import com.frank.hound.core.codec.protocol.http.HttpProtocolDescribe;
+import com.frank.hound.core.constant.ContextElementType;
+import com.frank.hound.core.context.ContextElement;
 import com.frank.hound.core.event.ResetTraceContextEvent;
 import com.frank.hound.core.support.HoundAutowired;
 import com.frank.hound.core.support.HoundBridge;
@@ -47,19 +48,17 @@ public class HoundWebMvcFilter implements Filter
             HttpServletRequest httpRequest = (HttpServletRequest) request;
 
             //获取头部参数
-            ProtocolComposition protocolComposition = new ProtocolComposition(HttpCompositionEnum.HEADER.getName());
+            ParsedContent parsedContent = new ParsedContent();
             Enumeration<String> headerNames = httpRequest.getHeaderNames();
             if (headerNames != null)
             {
                 while (headerNames.hasMoreElements())
                 {
                     final String headerName = headerNames.nextElement();
-                    protocolComposition.addElement(headerName,httpRequest
-                        .getHeader(headerName));
+                    parsedContent.addElement(headerName,new ContextElement<String>(ContextElementType.CORE_CONTEXT,httpRequest
+                        .getHeader(headerName),String.class));
                 }
             }
-
-
 
             //获取body中的元素
 //            Enumeration<String> bodyElement = httpRequest.getHeaderNames();
