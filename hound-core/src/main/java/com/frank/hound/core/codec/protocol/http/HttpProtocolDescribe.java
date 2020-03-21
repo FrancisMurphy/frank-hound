@@ -20,6 +20,9 @@ public class HttpProtocolDescribe implements ProtocolDescribable {
 
     private OriginalContent originalContent;
 
+    public HttpProtocolDescribe() {
+    }
+
     @Override
     public SerializeNotationEnum getSerializeNotation() {
         return serializeNotation;

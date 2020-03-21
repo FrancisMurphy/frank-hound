@@ -1,8 +1,12 @@
 package com.frank.hound.plugin.spring.mvc;
 
 import com.frank.hound.core.acceptor.unpacker.Unpacker;
+import com.frank.hound.core.codec.protocol.OriginalContent;
 import com.frank.hound.core.codec.protocol.ParsedContent;
+import com.frank.hound.core.codec.protocol.ProtocolDescribable;
 import com.frank.hound.core.codec.protocol.http.HttpCompositionEnum;
+import com.frank.hound.core.codec.protocol.http.HttpProtocolDescribe;
+import com.frank.hound.core.codec.serialize.SerializeNotationEnum;
 import com.frank.hound.core.constant.ContextElementType;
 import com.frank.hound.core.context.ContextElement;
 import com.frank.hound.core.event.ResetTraceContextEvent;
@@ -55,29 +59,14 @@ public class HoundWebMvcFilter implements Filter
                 while (headerNames.hasMoreElements())
                 {
                     final String headerName = headerNames.nextElement();
-                    parsedContent.addElement(headerName,new ContextElement<String>(ContextElementType.CORE_CONTEXT,httpRequest
+                    parsedContent.addElement(headerName,new ContextElement<>(ContextElementType.CORE_CONTEXT,httpRequest
                         .getHeader(headerName),String.class));
                 }
             }
 
-            //获取body中的元素
-//            Enumeration<String> bodyElement = httpRequest.getHeaderNames();
-//            if (headerNames != null)
-//            {
-//                while (headerNames.hasMoreElements())
-//                {
-//                    final String headerName = headerNames.nextElement();
-//                    targetHeaders.put(headerName, httpRequest
-//                        .getHeader(headerName));
-//                }
-//            }
-//
-//            HttpProtocolDescribe httpProtocolDescribe = new HttpProtocolDescribe();
-//            httpProtocolDescribe
+            ProtocolDescribable protocolDescribable = new HttpProtocolDescribe();
 
-
-
-//            mvcUnpacker.unpack(targetHeaders);
+            mvcUnpacker.unpack(protocolDescribable);
             chain.doFilter(request, response);
         }
         finally
