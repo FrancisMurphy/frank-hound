@@ -4,6 +4,6 @@ public interface Codec {
 
     String build(Object targetObj);
 
-    Object parseFrom(String source);
+    <T> T parseFrom(String source,Class<T> targetClazz);
 
 }

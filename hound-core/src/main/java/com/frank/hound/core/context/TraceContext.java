@@ -40,7 +40,7 @@ public class TraceContext
         this.contextMap.put(contextKey,contextValue);
     }
 
-    public Set<Map.Entry<String,ContextElement>>getContexts()
+    public Set<Map.Entry<String,ContextElement>> getContexts()
     {
         if(null == contextMap)
         {
