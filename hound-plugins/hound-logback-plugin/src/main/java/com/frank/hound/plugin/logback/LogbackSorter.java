@@ -27,7 +27,7 @@ public class LogbackSorter extends BaseSorter
                         TraceContextConstants.TRACE_CONTEXT_HEAD)))
         {
             MDC.put(TraceContextConstants.TRACE_CONTEXT_HEAD, traceContextThreadLocal.get().getContext(
-                    TraceContextConstants.TRACE_CONTEXT_HEAD).getObject().toString());
+                    TraceContextConstants.TRACE_CONTEXT_HEAD).getData());
         }
     }
 }

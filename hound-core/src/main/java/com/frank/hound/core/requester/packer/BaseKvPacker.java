@@ -26,7 +26,7 @@ public abstract class BaseKvPacker implements Packer
                 return;
             }
 
-            for (Map.Entry<String, ContextElement<?>> contextEntry : traceContext
+            for (Map.Entry<String, ContextElement> contextEntry : traceContext
                     .getContexts())
             {
                 final String contextKey = contextEntry.getKey();
@@ -34,7 +34,7 @@ public abstract class BaseKvPacker implements Packer
 
                 //目前核心上下文只能写入String，待编码器开发完成后，进行自动写入
                 if(contextElement.isCoreContextElement()) {
-                    final String contextValue = String.valueOf(contextElement.getObject());
+                    final String contextValue = String.valueOf(contextElement.getData());
                     unpackFunc.accept(contextKey,contextValue);
                 }
             }

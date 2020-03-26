@@ -41,7 +41,7 @@ public class UnpackedTraceContextInitListener implements HoundEventListener {
             String newTraceId = uuid.toString().replace("-", "");
 
             TraceContext traceContext = new TraceContext();
-            traceContext.addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, new ContextElement<>(ContextElementType.CORE_CONTEXT,newTraceId,String.class));
+            traceContext.addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, new ContextElement(ContextElementType.CORE_CONTEXT,newTraceId));
 
             traceContextThreadLocal.set(traceContext);
         } else if (StringUtils
@@ -49,7 +49,7 @@ public class UnpackedTraceContextInitListener implements HoundEventListener {
             UUID uuid = UUID.randomUUID();
             String newTraceId = uuid.toString().replace("-", "");
 
-            traceContextThreadLocal.get().addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, new ContextElement<>(ContextElementType.CORE_CONTEXT,newTraceId,String.class));
+            traceContextThreadLocal.get().addContext(TraceContextConstants.TRACE_CONTEXT_HEAD, new ContextElement(ContextElementType.CORE_CONTEXT,newTraceId));
         }
     }
 }

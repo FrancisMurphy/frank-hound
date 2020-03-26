@@ -16,9 +16,9 @@ public class TraceContext
      * The map that keep context param
      * 1."trace_id" {@see com.frank.trace.link.constant.TraceContextConstant}
      */
-    private Map<String,ContextElement<?>> contextMap;
+    private Map<String,ContextElement> contextMap;
 
-    public ContextElement<?> getContext(String contextKey)
+    public ContextElement getContext(String contextKey)
     {
         if(contextMap!=null)
         {
@@ -31,7 +31,7 @@ public class TraceContext
         return null;
     }
 
-    public <T> void addContext(String contextKey, ContextElement<T> contextValue)
+    public <T> void addContext(String contextKey, ContextElement contextValue)
     {
         if(null == contextMap)
         {
@@ -40,7 +40,7 @@ public class TraceContext
         this.contextMap.put(contextKey,contextValue);
     }
 
-    public Set<Map.Entry<String,ContextElement<?>>>getContexts()
+    public Set<Map.Entry<String,ContextElement>>getContexts()
     {
         if(null == contextMap)
         {

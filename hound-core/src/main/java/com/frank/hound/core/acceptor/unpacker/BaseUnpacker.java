@@ -1,7 +1,7 @@
 package com.frank.hound.core.acceptor.unpacker;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import com.frank.hound.core.codec.protocol.ProtocolDescribable;
+import com.frank.hound.core.constant.ContextElementType;
 import com.frank.hound.core.context.ContextElement;
 import com.frank.hound.core.context.TraceContext;
 import com.frank.hound.core.event.SortEvent;
@@ -19,39 +19,36 @@ import java.util.Map;
  * @author frank
  */
 @Slf4j
-public abstract class BaseKvUnpacker implements Unpacker
+public abstract class BaseUnpacker implements Unpacker
 {
     private Hound hound = Sheepehound.getHound();
 
-    @Override
-    public void unpack(@NonNull ProtocolDescribable unpackParam)
+    public void unpackTraceContextMap(@NonNull final Map<String,String> traceContextMap)
     {
         try
         {
             TransmittableThreadLocal<TraceContext> traceContextThreadLocal = TraceContextThreadLocalKeeper.TRACE_LOCAL_CONTEXT;
 
             //处理核心上下文
-            for (Map.Entry<String, ContextElement<?>> unpackMaterial : unpackParam.getParsedContent().getElements()
-                    .entrySet())
+            for (Map.Entry<String, String> unpackMaterial : traceContextMap.entrySet())
             {
                 final String k = unpackMaterial.getKey();
-                final ContextElement<?> v = unpackMaterial.getValue();
+                final String v = unpackMaterial.getValue();
                 if (TraceContextAssistant.isTraceKeyContain(k))
                 {
                     //放入TraceContext
                     TraceContext traceContext = new TraceContext();
-                    traceContext.addContext(k, v);
+                    traceContext.addContext(k, new ContextElement(ContextElementType.CORE_CONTEXT,v));
                     traceContextThreadLocal.set(traceContext);
                 }
             }
 
             hound.publishEvent(new UnpackedEvent(hound));
-
             hound.publishEvent(new SortEvent(hound,hound::sort));
         }
         catch (Exception e)
         {
-            log.error("Hound BaseKvUnpacker error:",e);
+            log.error("Hound BaseUnpacker error:",e);
         }
     }
 }
