@@ -4,7 +4,7 @@ import com.frank.hound.core.acceptor.unpacker.Unpacker;
 import com.frank.hound.core.event.ResetTraceContextEvent;
 import com.frank.hound.core.support.HoundAutowired;
 import com.frank.hound.core.support.HoundBridge;
-import com.frank.hound.core.support.Sheepehound;
+import com.frank.hound.core.support.SheepeHound;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -63,7 +63,7 @@ public class HoundWebMvcFilter implements Filter
             try
             {
                 //Clean threadlocal event
-                Sheepehound.getHound().publishEvent(new ResetTraceContextEvent(Sheepehound.getHound()));
+                SheepeHound.getHound().publishEvent(new ResetTraceContextEvent(SheepeHound.getHound()));
             }
             catch (Exception e)
             {

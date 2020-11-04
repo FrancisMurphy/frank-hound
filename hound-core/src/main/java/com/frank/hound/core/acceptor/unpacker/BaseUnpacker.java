@@ -7,7 +7,7 @@ import com.frank.hound.core.context.TraceContext;
 import com.frank.hound.core.event.SortEvent;
 import com.frank.hound.core.event.UnpackedEvent;
 import com.frank.hound.core.support.Hound;
-import com.frank.hound.core.support.Sheepehound;
+import com.frank.hound.core.support.SheepeHound;
 import com.frank.hound.core.support.TraceContextAssistant;
 import com.frank.hound.core.support.TraceContextThreadLocalKeeper;
 import lombok.NonNull;
@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Slf4j
 public abstract class BaseUnpacker implements Unpacker {
-    private Hound hound = Sheepehound.getHound();
+    private Hound hound = SheepeHound.getHound();
 
     public void unpackTraceContextMap(@NonNull final Map<String, String> traceContextMap) {
         try {

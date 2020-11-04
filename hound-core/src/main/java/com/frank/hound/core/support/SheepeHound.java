@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Initialization entry of hound-core, instantiated by single lazy mode
- * {@link Sheepehound#hound}，that Avoid the destruction of a single case by
+ * {@link SheepeHound#hound}，that Avoid the destruction of a single case by
  * means of a private constructor and a synchronization method block.
  * Sheepehound is an implementation of the hound interface that provides
  * the ability to initialize the portal's ioc and register corresponding hound beans
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author frank
  */
-public class Sheepehound implements Hound
+public class SheepeHound implements Hound
 {
     private final LoggerContext loggerContext = (LoggerContext) LoggerFactory
             .getILoggerFactory();
@@ -69,7 +69,7 @@ public class Sheepehound implements Hound
      */
 //    private HoundConfigurableEnvironment externalEnvironment;
 
-    private Sheepehound()
+    private SheepeHound()
     {
         // TODO:待使用工厂模式返回
         nativeEnvironment = new HoundNativeEnvironment(new BaseHoundEnvironment());
@@ -154,8 +154,8 @@ public class Sheepehound implements Hound
     {
         if (null == hound)
         {
-            hound = new Sheepehound();
-            ((Sheepehound) hound).init();
+            hound = new SheepeHound();
+            ((SheepeHound) hound).init();
         }
         return hound;
     }

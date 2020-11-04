@@ -43,6 +43,7 @@
         <module>hound-springboot-starter</module>
         <module>hound-agent</module>
         <module>hound-plugins</module>
+        <module>hound-test</module>
     </modules>
 
     <dependencyManagement>

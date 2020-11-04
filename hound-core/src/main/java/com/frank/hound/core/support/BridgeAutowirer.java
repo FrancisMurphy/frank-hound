@@ -40,7 +40,7 @@ public class BridgeAutowirer {
                     final Class componentBaseClazz = HoundClazzLibrary.getHoundComponentClazz(componentInstanceClazz);
                     if (componentBaseClazz != null) {
                         // Get and inject component instances
-                        Object componentInstance = Sheepehound.getHound().getSheep(bridgeName, componentBaseClazz);
+                        Object componentInstance = SheepeHound.getHound().getSheep(bridgeName, componentBaseClazz);
 
                         try {
                             field.set(bridgeObj, componentInstance);

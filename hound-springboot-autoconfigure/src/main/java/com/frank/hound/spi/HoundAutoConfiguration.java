@@ -1,7 +1,7 @@
 package com.frank.hound.spi;
 
 import com.frank.hound.core.support.Hound;
-import com.frank.hound.core.support.Sheepehound;
+import com.frank.hound.core.support.SheepeHound;
 import com.frank.hound.plugin.feign.HoundFeignRequestInterceptor;
 import com.frank.hound.plugin.spring.mvc.HoundWebMvcFilter;
 import com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor;
@@ -28,7 +28,7 @@ public class HoundAutoConfiguration
     public HoundAutoConfiguration(Environment environment)
     {
         this.environment = environment;
-        this.houndContext = Sheepehound.getHound();
+        this.houndContext = SheepeHound.getHound();
     }
 
     /**
