@@ -23,6 +23,10 @@ public class HoundHttpClientTransformer implements HoundJavassistTransformlet
     {
         final CtClass clazz = classInfo.getCtClass();
 
+        if(!clazz.getName().equals(HTTP_CLIENT_BUILDER_CLASS_NAME)) {
+            return;
+        }
+
         try
         {
             CtMethod buildMethod = clazz

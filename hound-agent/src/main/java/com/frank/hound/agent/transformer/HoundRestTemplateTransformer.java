@@ -12,7 +12,8 @@ import java.io.IOException;
 public class HoundRestTemplateTransformer implements HoundJavassistTransformlet
 {
 
-    private String HTTP_CLIENT_BUILDER_CLASS_NAME = "org.springframework.web.client.RestTemplate";
+    private String RESTTEMPLATE_BUILDER_CLASS_NAME = "org.springframework.web.client.RestTemplate";
+
 
     @Override
     public void doTransform(ClassInfo classInfo)
@@ -20,17 +21,21 @@ public class HoundRestTemplateTransformer implements HoundJavassistTransformlet
     {
         final CtClass clazz = classInfo.getCtClass();
 
+        if(!clazz.getName().equals(RESTTEMPLATE_BUILDER_CLASS_NAME)) {
+            return;
+        }
+
         try
         {
             CtMethod buildMethod = clazz
-                    .getDeclaredMethod(HTTP_CLIENT_BUILDER_CLASS_NAME);
+                    .getDeclaredMethod(RESTTEMPLATE_BUILDER_CLASS_NAME);
 
             String code = "boolean isHoundInterceptorInit = false;" +
                     "      for(org.springframework.http.client.ClientHttpRequestInterceptor restTemplateInterceptor : restTemplate.getInterceptors())" +
                     "      {if(restTemplateInterceptor instanceof com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor)" +
                     "         {isHoundInterceptorInit = true;}}" +
                     "        if(!isHoundInterceptorInit){" +
-                    "            com.frank.hound.core.support.Hound houndContext = com.frank.hound.core.support.Sheepehound.getHound();" +
+                    "            com.frank.hound.core.support.Hound houndContext = com.frank.hound.core.support.SheepeHound.getHound();" +
                     "            if(houndContext!=null){" +
                     "                com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor houndRestTemplateInterceptor =" +
                     "                        (com.frank.hound.plugin.spring.resttemplate.HoundRestTemplateInterceptor) houndContext.getBridge(\"restTemplate\");" +
