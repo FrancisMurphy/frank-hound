@@ -16,3 +16,7 @@ hound-plugins/hound-spring-mvc-plugin/target/
 hound-plugins/hound-spring-resttemplate-plugin/target/
 hound-springboot-autoconfigure/target/
 hound-springboot-starter/target/
+hound-example/hound-example-service-a/.mvn
+hound-example/hound-example-service-b/.mvn
+hound-example/hound-example-service-c/.mvn
+hound-test/target

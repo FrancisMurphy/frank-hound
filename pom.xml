@@ -44,6 +44,7 @@
         <module>hound-agent</module>
         <module>hound-plugins</module>
         <module>hound-test</module>
+        <module>hound-example</module>
     </modules>
 
     <dependencyManagement>
